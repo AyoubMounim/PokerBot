@@ -20,16 +20,12 @@ int main(){
     tableDeck->shuffleDeck();
 
     Hand myHand = Hand(playerDeck->drawCard(), playerDeck->drawCard());
-    Table myTable = Table(tableDeck->drawCards(3));
-    Point myPoint = myHand.nameHand(&myTable);
-
-    myHand.printHand();
-    myTable.printTable();
-    myPoint.printPoint();
+    Table *myTable = new Table(tableDeck->drawCards(3));
+    Point myPoint = myHand.nameHand(myTable);
 
     rater.set_player_point(&myPoint);
     rater.set_n_opponents(n_opponents);
-    rater.set_table(&myTable);
+    rater.set_table(myTable);
     rater.set_deck(playerDeck);
     float rating = rater.rate();
 

@@ -22,6 +22,7 @@ class Rater{
   public:
     Rater();
     float rate();
+    Point name_hand();
     void set_n_opponents(int n_opponents);
 
     void set_player_point(Point *player_point){mPlayerPoint = player_point;}
