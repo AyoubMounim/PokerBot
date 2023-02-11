@@ -227,9 +227,9 @@ void Hand::printHand(){
     secondCard.printCard();
 }
 
-Point Hand::nameHand(Table table){
+Point Hand::nameHand(Table *table){
     std::vector<Card> cards;
-    for (auto& card: table.getCards()){
+    for (auto& card: table->getCards()){
         cards.push_back(card);
     }
     cards.push_back(firstCard);

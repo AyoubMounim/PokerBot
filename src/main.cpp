@@ -6,19 +6,31 @@
 #include "Point.hpp"
 #include "Deck.hpp"
 #include "utils.hpp"
+#include "Rater.hpp"
 
 
 int main(){
-    int n_players = 2;
+    int n_opponents = 2;
+    Rater rater = Rater();
 
-    Deck myDeck = Deck();
-    myDeck.shuffleDeck();
+    Deck *playerDeck = new Deck();
+    Deck *tableDeck = new Deck();
+    playerDeck->shuffleDeck();
+    tableDeck->shuffleDeck();
 
-    Hand myHand = Hand(myDeck.drawCard(), myDeck.drawCard());
-    Table myTable = Table(myDeck.drawCards(3));
-    Point myPoint = myHand.nameHand(myTable);
+    Hand myHand = Hand(playerDeck->drawCard(), playerDeck->drawCard());
+    Table myTable = Table(tableDeck->drawCards(3));
+    Point myPoint = myHand.nameHand(&myTable);
+
+    myHand.printHand();
+    myTable.printTable();
     myPoint.printPoint();
 
-    float rate = rateHand(myHand, myTable, myDeck);
-    std::cout << "\nHand rate: " << rate << "\n";
+    rater.set_player_point(&myPoint);
+    rater.set_n_opponents(n_opponents);
+    rater.set_table(&myTable);
+    rater.set_deck(playerDeck);
+    float rating = rater.rate();
+
+    std::cout << "Rating: " << rating << std::endl;
 }

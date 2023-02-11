@@ -8,13 +8,13 @@
 
 int improvementOneStep(Hand myHand, Table myTable, Deck myDeck){
     Table possibleTable = Table(myTable.getCards());
-    Point myPoint = myHand.nameHand(myTable);
+    Point myPoint = myHand.nameHand(&myTable);
     Point max_point = Point(myPoint.getName(), myPoint.getKicker());
     int trials = 0;
     int improvements = 0;
     for (auto &card: myDeck.getDeckCards()){
         possibleTable.addCard(card);
-        Point possiblePoint = myHand.nameHand(possibleTable);
+        Point possiblePoint = myHand.nameHand(&possibleTable);
         if (possiblePoint.getName() > myPoint.getName()){
             improvements++;
             max_point.setName(possiblePoint.getName());
@@ -37,7 +37,7 @@ int improvementOneStep(Hand myHand, Table myTable, Deck myDeck){
 
 int improvementTwoStep(Hand myHand, Table myTable, Deck myDeck){
     Table possibleTable = Table(myTable.getCards());
-    Point myPoint = myHand.nameHand(myTable);
+    Point myPoint = myHand.nameHand(&myTable);
     Point max_point = Point(myPoint.getName(), myPoint.getKicker());
     int trials = 0;
     int improvements = 0;
@@ -46,7 +46,7 @@ int improvementTwoStep(Hand myHand, Table myTable, Deck myDeck){
         possibleTable.addCard(myDeck.getDeckCards()[i]);
         for (int j=i+1; j<deck_size; j++){
             possibleTable.addCard(myDeck.getDeckCards()[j]);
-            Point possiblePoint = myHand.nameHand(possibleTable);
+            Point possiblePoint = myHand.nameHand(&possibleTable);
             if (possiblePoint.getName() > myPoint.getName()){
                 improvements++;
                 max_point.setName(possiblePoint.getName());

@@ -10,7 +10,7 @@
 class Hand{
     public:
     Hand(Card, Card);
-    Point nameHand(Table);
+    Point nameHand(Table *);
     void printHand();
 
     private:
