@@ -20,6 +20,8 @@ float Rater::rate(){
   std::vector<Card> cards_in_deck = mDeck->getDeckCards();
   int n_cards = cards_in_deck.size();
   int iterator_count = 0;
+
+  auto start = std::chrono::steady_clock::now();
   for (int i = 0; i < n_cards - 1; i++){
     Card cardOne = cards_in_deck[i];
     for (int j = i + 1; j < n_cards; j++){
@@ -32,7 +34,12 @@ float Rater::rate(){
       iterator_count++;
     }
   }
-  std::cout << "Wins: " << result_hist[WIN] << std::endl;
+  auto end = std::chrono::steady_clock::now();
+  std::cout 
+    << "Time: " 
+    << (std::chrono::duration_cast<std::chrono::microseconds>(end-start).count())/1000000.0 
+    << std::endl;
+
   float win_rate = (float)result_hist[WIN]/iterator_count;
   return win_rate;
 }

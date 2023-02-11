@@ -4,6 +4,7 @@
 
 #include <iostream>
 #include <vector>
+#include <chrono>
 #include "Hand.hpp"
 #include "Point.hpp"
 #include "Table.hpp"
