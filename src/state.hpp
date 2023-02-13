@@ -1,6 +1,6 @@
 
-#ifndef state
-#define state
+#ifndef STATE
+#define STATE
 
 #include <vector>
 #include "app_object.hpp"

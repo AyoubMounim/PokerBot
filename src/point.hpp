@@ -1,6 +1,6 @@
 
-#ifndef point
-#define point
+#ifndef POINT
+#define POINT
 
 #include <vector>
 #include <stdexcept>

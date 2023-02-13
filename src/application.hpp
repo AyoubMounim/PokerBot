@@ -1,6 +1,6 @@
 
-#ifndef application
-#define application
+#ifndef APPLICATION
+#define APPLICATION
 
 #include "renderer.hpp"
 #include "console_renderer.hpp"

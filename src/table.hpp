@@ -1,6 +1,6 @@
 
-#ifndef table
-#define table
+#ifndef TABLE
+#define TABLE
 
 #include <vector>
 #include "card.hpp"
@@ -18,6 +18,5 @@ class Table: public AppObject{
     private:
     std::vector<Card> tableCards;
 };
-
 
 #endif

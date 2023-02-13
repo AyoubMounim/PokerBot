@@ -1,6 +1,6 @@
 
-#ifndef console_renderer
-#define console_renderer
+#ifndef CONSOLE_RENDERER
+#define CONSOLE_RENDERER
 
 #include "renderer.hpp"
 #include "card.hpp"

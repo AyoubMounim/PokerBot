@@ -1,6 +1,6 @@
 
-#ifndef menu_state
-#define menu_state
+#ifndef MENU_STATE
+#define MENU_STATE
 
 #include "state.hpp"
 #include "application.hpp"

@@ -1,6 +1,6 @@
 
-#ifndef renderer
-#define renderer
+#ifndef RENDERER
+#define RENDERER
 
 #include "card.hpp"
 #include "hand.hpp"

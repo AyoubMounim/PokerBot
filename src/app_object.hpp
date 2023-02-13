@@ -1,6 +1,6 @@
 
-#ifndef app_object
-#define app_object
+#ifndef APP_OBJECT
+#define APP_OBJECT
 
 
 class AppObject{

@@ -1,6 +1,6 @@
 
-#ifndef deck
-#define deck
+#ifndef DECK
+#define DECK
 
 #include <vector>
 #include <algorithm>
