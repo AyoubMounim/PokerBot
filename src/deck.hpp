@@ -11,7 +11,7 @@
 
 
 class Deck: public AppObject{
-    public:
+  public:
     Deck();
     void removeCard(Card);
     void removeCards(std::vector<Card>);
@@ -22,7 +22,7 @@ class Deck: public AppObject{
     std::vector<Card> drawCards(int);
     std::vector<Card> getDeckCards();
 
-    private:
+  private:
     std::vector<Card> deck_cards;
 };
 

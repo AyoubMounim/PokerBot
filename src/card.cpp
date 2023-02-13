@@ -1,4 +1,5 @@
 
+#include "application.hpp"
 #include "card.hpp"
 
 
@@ -56,5 +57,6 @@ int Card::getId(){
 
 
 void Card::render(){
+    TheApplication::getInstance()->getRenderer()->renderCard(this);
     return;
 }
