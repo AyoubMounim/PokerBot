@@ -18,6 +18,7 @@ class Application{
     bool getRunning(){return mRunning;}
     void setRenderer(Renderer *pRenderer){mRenderer = pRenderer;}
     Renderer * getRenderer(){return mRenderer;}
+    void setState(State *pState){mState = pState;}
     
   private:
     Application(){}

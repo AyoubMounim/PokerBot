@@ -1,6 +1,7 @@
 
 #include <iostream>
 #include "menu_state.hpp"
+#include "pre_flop_state.hpp"
 
 
 MenuState::MenuState(Application *pApplication)
@@ -24,12 +25,20 @@ void MenuState::onExit(){
 
 void MenuState::update(){
   std::string user_input;
-  std::cout << "\nPress 'q' for exit." << std::endl;
+  std::cout
+    << "\nPress 'n' for new game."
+    << "\nPress 'q' for exit." 
+    << std::endl;
+
   std::cin >> user_input;
 
   if (user_input == "q"){
     onExit();
     TheApplication::getInstance()->setRunning(false);
+  }
+  else if (user_input == "n"){
+    onExit();
+    changeState(new PreFlopState(mApplication));
   }
   return;
 }
@@ -41,5 +50,6 @@ void MenuState::render(){
 
 
 void MenuState::changeState(State *pState){
+  mApplication->setState(pState);
   return;
 }
