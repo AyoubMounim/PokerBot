@@ -8,7 +8,7 @@
 
 class MenuState: public State{
   public:
-    MenuState();
+    MenuState(Application *pApplication);
     virtual void onEnter();
     virtual void onExit();
     virtual void update();
@@ -16,6 +16,7 @@ class MenuState: public State{
     virtual void changeState(State *pState);
   
   protected:
+    Application *mApplication;
     std::vector<AppObject *> mObjects;    
 };
 

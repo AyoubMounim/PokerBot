@@ -5,7 +5,6 @@
 #include "renderer.hpp"
 #include "console_renderer.hpp"
 #include "state.hpp"
-#include "menu_state.hpp"
 
 
 class Application{

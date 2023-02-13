@@ -3,8 +3,9 @@
 #include "menu_state.hpp"
 
 
-MenuState::MenuState()
+MenuState::MenuState(Application *pApplication)
 : State(){
+  mApplication = pApplication;
   onEnter();
 }
 
@@ -30,7 +31,6 @@ void MenuState::update(){
     onExit();
     TheApplication::getInstance()->setRunning(false);
   }
-  return;
   return;
 }
 
