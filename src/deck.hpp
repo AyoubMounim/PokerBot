@@ -3,7 +3,6 @@
 #define deck
 
 #include <vector>
-#include <iostream>
 #include <algorithm>
 #include <stdexcept>
 #include <random>

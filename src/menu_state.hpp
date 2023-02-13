@@ -2,7 +2,6 @@
 #ifndef menu_state
 #define menu_state
 
-#include <iostream>
 #include "state.hpp"
 #include "application.hpp"
 

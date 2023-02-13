@@ -2,7 +2,6 @@
 #ifndef console_renderer
 #define console_renderer
 
-#include <iostream>
 #include "renderer.hpp"
 #include "card.hpp"
 #include "hand.hpp"

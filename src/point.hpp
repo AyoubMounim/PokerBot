@@ -2,7 +2,6 @@
 #ifndef point
 #define point
 
-#include <iostream>
 #include <vector>
 #include <stdexcept>
 #include "app_object.hpp"
