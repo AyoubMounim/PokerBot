@@ -1,10 +1,11 @@
 
-#ifndef Card_hpp
-#define Card_hpp
+#ifndef CARD
+#define CARD
 
 #include <string>
-#include <stdio.h>
+#include <vector>
 #include <stdexcept>
+#include "app_object.hpp"
 
 
 enum suit{
@@ -15,7 +16,7 @@ enum suit{
 };
 
 
-class Card{
+class Card: public AppObject{
     public:
     Card(int, suit);
     void setSuit(suit);
@@ -24,13 +25,12 @@ class Card{
     suit getSuit();
     int getValue();
     int getId();
-    void printCard();
+    void render();
 
     private:
     int cardValue;
     int id;
     suit cardSuit;
 };
-
 
 #endif

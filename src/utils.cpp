@@ -1,10 +1,11 @@
 
+/*
+
 #include <iostream>
 #include "Deck.hpp"
 #include "Hand.hpp"
 #include "Table.hpp"
 #include "Point.hpp"
-
 
 int improvementOneStep(Hand myHand, Table myTable, Deck myDeck){
     Table possibleTable = Table(myTable.getCards());
@@ -83,3 +84,4 @@ float rateHand(Hand myHand, Table myTable, Deck myDeck){
     float rate = (float)improvements/trials;
     return rate;
 }
+*/

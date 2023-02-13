@@ -1,18 +1,12 @@
 
-#include <iostream>
-#include <algorithm>
-#include <stdexcept>
-#include <random>
-#include <random>
-#include <vector>
-#include "Deck.hpp"
-#include "Card.hpp"
+#include "deck.hpp"
 
 
 suit card_suits[4] = {CLUB, DIAMOND, HEART, SPADE};
 
 
-Deck::Deck(){
+Deck::Deck()
+: AppObject(){
     initializeDeck();
 }
 
@@ -26,14 +20,7 @@ void Deck::initializeDeck(){
     return;
 }
 
-void Deck::printDeck(){
-    if (deck_cards.size() == 0){
-        std::cout << "The deck has no cards.\n";
-        return;
-    }
-    std::cout << "\nDeck:\n";
-    for (auto &card: deck_cards)
-        card.printCard(); 
+void Deck::render(){
     return;
 }
 

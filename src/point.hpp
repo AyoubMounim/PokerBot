@@ -1,6 +1,11 @@
 
-#ifndef Point_hpp
-#define Point_hpp
+#ifndef point
+#define point
+
+#include <iostream>
+#include <vector>
+#include <stdexcept>
+#include "app_object.hpp"
 
 
 enum hands{
@@ -17,7 +22,7 @@ enum hands{
 };
 
 
-class Point{
+class Point: public AppObject{
     private:
     hands name;
     int kicker;
@@ -26,11 +31,10 @@ class Point{
     Point(hands, int);
     void setName(hands);
     void setKicker(int);
-    void printPoint();
+    void render();
     hands getName();
     int getKicker();
 };
-
 
 #endif
 

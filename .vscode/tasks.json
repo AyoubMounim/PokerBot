@@ -7,13 +7,13 @@
             "args": [
                 "-fdiagnostics-color=always",
                 "-g",
-                "-I${workspaceFolder}/src/**",
+                "-std=c++17",
                 "${workspaceFolder}/src/*.cpp",
                 "-o",
                 "${workspaceFolder}/build/${fileBasenameNoExtension}"
             ],
             "options": {
-                "cwd": "${fileDirname}"
+                "cwd": "${workspaceFolder}"
             },
             "problemMatcher": [
                 "$gcc"

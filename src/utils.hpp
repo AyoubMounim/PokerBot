@@ -1,4 +1,5 @@
 
+/*
 #ifndef utils_hpp
 #define utils_hpp
 
@@ -13,3 +14,4 @@ float rateHand(Hand, Table, Deck);
 
 
 #endif
+*/

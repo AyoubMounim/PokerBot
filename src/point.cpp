@@ -1,8 +1,5 @@
 
-#include <iostream>
-#include <vector>
-#include <stdexcept>
-#include "Point.hpp"
+#include "point.hpp"
 
 
 const std::vector<std::string> card_names = {
@@ -15,7 +12,8 @@ const std::vector<std::string> point_names = {
 };
 
 
-Point::Point(hands handName, int k){
+Point::Point(hands handName, int k)
+: AppObject(){
     setName(handName);
     setKicker(k);
 }
@@ -31,12 +29,8 @@ void Point::setKicker(int k){
     kicker = k;
 }
 
-void Point::printPoint(){
-    std::string point_name = point_names[name];
-    std::string kicker_name = card_names[kicker - 2];
-    std::cout << "\nPoint:\n";
-    std::cout << ">>> Name: " << point_name << "\n";
-    std::cout << ">>> Kicker: " << kicker_name << "\n";
+void Point::render(){
+  return;
 }
 
 hands Point::getName(){

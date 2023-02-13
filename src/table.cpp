@@ -1,9 +1,9 @@
 
-#include "Card.hpp"
-#include "Table.hpp"
+#include "table.hpp"
 
 
-Table::Table(std::vector<Card> cards){
+Table::Table(std::vector<Card> cards)
+: AppObject(){
     if (cards.size()<3 || cards.size()>5){
         throw std::invalid_argument("Invalid table cards number.");
     }
@@ -30,10 +30,6 @@ std::vector<Card> Table::getCards(){
     return tableCards;
 }
 
-void Table::printTable(){
-    printf("\nTable:");
-    for (auto& card: tableCards){
-        card.printCard();
-    }
-    return;
+void Table::render(){
+  return;
 }

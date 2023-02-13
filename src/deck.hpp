@@ -1,18 +1,24 @@
 
-#ifndef Deck_hpp
-#define Deck_hpp
+#ifndef deck
+#define deck
 
 #include <vector>
-#include "Card.hpp"
+#include <iostream>
+#include <algorithm>
+#include <stdexcept>
+#include <random>
+#include "card.hpp"
+#include "app_object.hpp"
 
-class Deck{
+
+class Deck: public AppObject{
     public:
     Deck();
     void removeCard(Card);
     void removeCards(std::vector<Card>);
     void initializeDeck();
     void shuffleDeck();
-    void printDeck();
+    void render();
     Card drawCard();
     std::vector<Card> drawCards(int);
     std::vector<Card> getDeckCards();
@@ -20,6 +26,5 @@ class Deck{
     private:
     std::vector<Card> deck_cards;
 };
-
 
 #endif

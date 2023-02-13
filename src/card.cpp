@@ -1,8 +1,5 @@
 
-#include <iostream>
-#include <vector>
-#include <string>
-#include "Card.hpp"
+#include "card.hpp"
 
 
 const std::vector<std::string> card_names = {
@@ -14,15 +11,18 @@ const std::vector<std::string> card_suits = {
 };
 
 
-Card::Card(int value, suit s){
+Card::Card(int value, suit s)
+: AppObject(){
     setSuit(s);
     setValue(value);
     setId(value, s);
 }
 
+
 void Card::setSuit(suit s){
     cardSuit = s;
 }
+
 
 void Card::setValue(int v){
     if ((v < 2) || (v > 14)){
@@ -31,13 +31,16 @@ void Card::setValue(int v){
     cardValue = v;
 }
 
+
 suit Card::getSuit(){
     return cardSuit;
 }
 
+
 int Card::getValue(){
     return cardValue;
 }
+
 
 void Card::setId(int value, suit s){
     if ((value < 2) || (value > 14)){
@@ -46,14 +49,12 @@ void Card::setId(int value, suit s){
     id = value*s;
 }
 
+
 int Card::getId(){
     return id;
 }
 
-void Card::printCard(){
-    std::string card_name = card_names[getValue() - 2];
-    std::string card_suit = card_suits[getSuit() - 1];
-    std::cout << "\nCard:\n";
-    std::cout << ">>> Name: " << card_name << "\n";
-    std::cout << ">>> Suit: " << card_suit << "\n";
+
+void Card::render(){
+    return;
 }

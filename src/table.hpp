@@ -1,18 +1,19 @@
 
-#ifndef Table_hpp
-#define Table_hpp
+#ifndef table
+#define table
 
 #include <vector>
-#include "Card.hpp"
+#include "card.hpp"
+#include "app_object.hpp"
 
 
-class Table{
+class Table: public AppObject{
     public:
     Table(std::vector<Card>);
     void addCard(Card);
     void removeCard();
     std::vector<Card> getCards();
-    void printTable();
+    void render();
 
     private:
     std::vector<Card> tableCards;
