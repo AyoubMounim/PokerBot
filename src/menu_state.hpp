@@ -13,11 +13,6 @@ class MenuState: public State{
     virtual void onExit();
     virtual void update();
     virtual void render();
-    virtual void changeState(State *pState);
-  
-  protected:
-    Application *mApplication;
-    std::vector<AppObject *> mObjects;    
 };
 
 #endif

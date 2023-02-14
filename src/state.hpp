@@ -6,18 +6,20 @@
 #include "app_object.hpp"
 
 
+class Application;
+
+
 class State{
   public:
     virtual void onEnter() = 0;
     virtual void onExit() = 0;
     virtual void update() = 0;
     virtual void render() = 0;
-    virtual void changeState(State *pState) = 0;
   
   protected:
-    State(){}
+    State(Application *pApplication){mApplication = pApplication;}
 
-    std::vector<AppObject *> mObjects;    
+    Application *mApplication;
 };
 
 #endif

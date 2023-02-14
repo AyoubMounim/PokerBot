@@ -5,10 +5,7 @@
 
 
 MenuState::MenuState(Application *pApplication)
-: State(){
-  mApplication = pApplication;
-  onEnter();
-}
+: State(pApplication){}
 
 
 void MenuState::onEnter(){
@@ -37,19 +34,12 @@ void MenuState::update(){
     TheApplication::getInstance()->setRunning(false);
   }
   else if (user_input == "n"){
-    onExit();
-    changeState(new PreFlopState(mApplication));
+    mApplication->changeState(new PreFlopState(mApplication));
   }
   return;
 }
 
 
 void MenuState::render(){
-  return;
-}
-
-
-void MenuState::changeState(State *pState){
-  mApplication->setState(pState);
   return;
 }

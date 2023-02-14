@@ -1,7 +1,8 @@
 
-#include <iostream>
 #include "application.hpp"
+#include "state.hpp"
 #include "menu_state.hpp"
+#include <iostream>
 
 
 Application * Application::sInstance = nullptr;
@@ -19,6 +20,7 @@ void Application::initialize(){
   mRunning = true;
   mRenderer = new ConsoleRenderer();
   mState = new MenuState(sInstance);
+  mState->onEnter();
   std::cout << "Initialization succesfull." << std::endl;
   return;
 }
@@ -33,4 +35,12 @@ void Application::update(){
 void Application::render(){
   mState->render();
   return;
+}
+
+
+void Application::changeState(State *pSate){
+  mState->onExit();
+  mState = pSate;
+  mState->onEnter();
+  return;  
 }

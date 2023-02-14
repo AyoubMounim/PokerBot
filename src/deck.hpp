@@ -10,6 +10,9 @@
 #include "app_object.hpp"
 
 
+class Hand;
+
+
 class Deck: public AppObject{
   public:
     Deck();
@@ -19,6 +22,7 @@ class Deck: public AppObject{
     void shuffleDeck();
     void render();
     Card drawCard();
+    Hand * drawHand();
     std::vector<Card> drawCards(int);
     std::vector<Card> getDeckCards();
 

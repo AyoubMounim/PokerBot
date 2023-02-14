@@ -4,7 +4,9 @@
 
 #include "renderer.hpp"
 #include "console_renderer.hpp"
-#include "state.hpp"
+
+
+class State;
 
 
 class Application{
@@ -13,12 +15,12 @@ class Application{
     static Application * getInstance();
     void update();
     void render();
+    void changeState(State *pState);
 
     void setRunning(bool is_running){mRunning = is_running;}
     bool getRunning(){return mRunning;}
     void setRenderer(Renderer *pRenderer){mRenderer = pRenderer;}
     Renderer * getRenderer(){return mRenderer;}
-    void setState(State *pState){mState = pState;}
     
   private:
     Application(){}

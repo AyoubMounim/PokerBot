@@ -4,6 +4,11 @@
 
 #include "state.hpp"
 #include "application.hpp"
+#include <map>
+#include <string>
+
+
+class AppObject;
 
 
 class PreFlopState: public State{
@@ -13,10 +18,9 @@ class PreFlopState: public State{
     virtual void onExit();
     virtual void update();
     virtual void render();
-    virtual void changeState(State *pState);
-
+  
   private:
-    Application *mApplication;
+    std::map<std::string, AppObject *> mObjects;
 };
 
 #endif
