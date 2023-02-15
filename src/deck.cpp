@@ -1,5 +1,6 @@
 
 #include "deck.hpp"
+#include "table.hpp"
 #include "application.hpp"
 #include "hand.hpp"
 
@@ -81,4 +82,10 @@ std::vector<Card> Deck::drawCards(int n_cards){
 Hand * Deck::drawHand(){
   std::vector<Card> handCards = drawCards(2);
   return new Hand(handCards[0], handCards[1]);
+}
+
+
+Table * Deck::drawFlop(){
+  std::vector<Card> tableCards = drawCards(3);
+  return new Table(tableCards);
 }

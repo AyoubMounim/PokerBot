@@ -15,6 +15,7 @@ class Application{
     static Application * getInstance();
     void update();
     void render();
+    void handleInput();
     void changeState(State *pState);
 
     void setRunning(bool is_running){mRunning = is_running;}

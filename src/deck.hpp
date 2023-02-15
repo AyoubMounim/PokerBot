@@ -11,6 +11,7 @@
 
 
 class Hand;
+class Table;
 
 
 class Deck: public AppObject{
@@ -23,6 +24,7 @@ class Deck: public AppObject{
     void render();
     Card drawCard();
     Hand * drawHand();
+    Table * drawFlop();
     std::vector<Card> drawCards(int);
     std::vector<Card> getDeckCards();
 

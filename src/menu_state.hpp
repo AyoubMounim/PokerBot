@@ -11,8 +11,9 @@ class MenuState: public State{
     MenuState(Application *pApplication);
     virtual void onEnter();
     virtual void onExit();
-    virtual void update();
     virtual void render();
+    virtual void update();
+    virtual void handleInput();
 };
 
 #endif

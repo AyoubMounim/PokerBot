@@ -1,19 +1,19 @@
 
-#ifndef FLOP_STATE
-#define FLOP_STATE
+#ifndef TURN_STATE
+#define TURN_STATE
 
 #include "state.hpp"
-#include "application.hpp"
-#include <string>
 #include <map>
+#include <string>
 
 
+class Application;
 class AppObject;
 
 
-class FlopState: public State{
+class TurnState: public State{
   public:
-    FlopState(
+    TurnState(
       Application *pApplication,
       std::map<std::string, AppObject *> objects
     );

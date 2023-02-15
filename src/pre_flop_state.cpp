@@ -31,6 +31,17 @@ void PreFlopState::onExit(){
 
 
 void PreFlopState::update(){
+  return;
+}
+
+
+void PreFlopState::render(){
+  mObjects["hand"]->render();
+  return;
+}
+
+
+void PreFlopState::handleInput(){
   std::string user_input;
   std::cout << "Press 'n' to go to flop." << std::endl;
   std::cout << "Press 'q' to exit." << std::endl;
@@ -41,13 +52,9 @@ void PreFlopState::update(){
     TheApplication::getInstance()->setRunning(false);
   }
   else if (user_input == "n"){
-    mApplication->changeState(new FlopState(mApplication));
+    mApplication->changeState(
+      new FlopState(mApplication, mObjects)
+    );
   }
-  return;
-}
-
-
-void PreFlopState::render(){
-  mObjects["hand"]->render();
   return;
 }

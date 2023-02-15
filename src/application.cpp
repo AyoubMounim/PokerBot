@@ -38,6 +38,12 @@ void Application::render(){
 }
 
 
+void Application::handleInput(){
+  mState->handleInput();
+  return;
+}
+
+
 void Application::changeState(State *pSate){
   mState->onExit();
   mState = pSate;

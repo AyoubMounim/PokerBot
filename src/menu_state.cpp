@@ -21,6 +21,16 @@ void MenuState::onExit(){
 
 
 void MenuState::update(){
+  return;
+}
+
+
+void MenuState::render(){
+  return;
+}
+
+
+void MenuState::handleInput(){
   std::string user_input;
   std::cout
     << "\nPress 'n' for new game."
@@ -36,10 +46,5 @@ void MenuState::update(){
   else if (user_input == "n"){
     mApplication->changeState(new PreFlopState(mApplication));
   }
-  return;
-}
-
-
-void MenuState::render(){
   return;
 }

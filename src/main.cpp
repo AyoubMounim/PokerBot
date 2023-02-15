@@ -7,5 +7,6 @@ int main(){
     while (TheApplication::getInstance()->getRunning()){
         TheApplication::getInstance()->update();
         TheApplication::getInstance()->render();
+        TheApplication::getInstance()->handleInput();
     }
 }

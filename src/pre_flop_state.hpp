@@ -16,8 +16,9 @@ class PreFlopState: public State{
     PreFlopState(Application *pApplication);
     virtual void onEnter();
     virtual void onExit();
-    virtual void update();
     virtual void render();
+    virtual void update();
+    virtual void handleInput();
   
   private:
     std::map<std::string, AppObject *> mObjects;
