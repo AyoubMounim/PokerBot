@@ -48,8 +48,10 @@ void RiverState::update(){
 
 void RiverState::handleInput(){
   std::string user_input;
-  std::cout << "Press 'n' new game." << std::endl;
-  std::cout << "Press 'q' to exit." << std::endl;
+  std::cout 
+    << "\nPress 'n' new game."
+    << "\nPress 'q' to exit."
+    << std::endl;
   std::cin >> user_input;
 
   if (user_input == "q"){

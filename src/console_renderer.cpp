@@ -44,13 +44,13 @@ void ConsoleRenderer::renderHand(Hand *pHand){
 
 
 void ConsoleRenderer::renderTable(Table *pTable){
-  std::cout << "\nThe table: ";
+  std::cout << "\nThe table:";
   for (auto &card: pTable->getCards()){
     std::string card_number = card_names[card.getValue()-2];
     std::string card_suit = card_suits[card.getSuit()-1];
     std::cout << " " << card_number << card_suit;
   }
-  std::cout << std::endl;
+  std::cout << "\n" << std::endl;
   return;
 }
 

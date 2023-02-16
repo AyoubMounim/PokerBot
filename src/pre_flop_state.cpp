@@ -46,8 +46,10 @@ void PreFlopState::render(){
 
 void PreFlopState::handleInput(){
   std::string user_input;
-  std::cout << "Press 'n' to go to flop." << std::endl;
-  std::cout << "Press 'q' to exit." << std::endl;
+  std::cout
+    << "\nPress 'n' to go to flop." 
+    << "\nPress 'q' to exit."
+    << std::endl;
   std::cin >> user_input;
 
   if (user_input == "q"){

@@ -47,8 +47,10 @@ void TurnState::update(){
 
 void TurnState::handleInput(){
   std::string user_input;
-  std::cout << "Press 'n' to go to river." << std::endl;
-  std::cout << "Press 'q' to exit." << std::endl;
+  std::cout 
+    << "\nPress 'n' to go to river."
+    << "\nPress 'q' to exit."
+    << std::endl;
   std::cin >> user_input;
 
   if (user_input == "q"){
