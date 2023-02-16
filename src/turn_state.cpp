@@ -13,6 +13,7 @@ TurnState::TurnState(
   std::map<std::string, AppObject *> objects
 )
 : State(pApplication){
+  state_id = "TURN";
   mObjects = objects;
 }
 
@@ -32,6 +33,7 @@ void TurnState::onExit(){
 
 
 void TurnState::render(){
+  State::render();
   mObjects["hand"]->render();
   mObjects["table"]->render();
   return;

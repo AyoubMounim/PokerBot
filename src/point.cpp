@@ -7,6 +7,7 @@ const std::vector<std::string> card_names = {
   "2", "3", "4", "5", "6", "7", "8", "9", "T", "J", "Q", "K", "A"
 };
 
+
 const std::vector<std::string> point_names = {
   "High Card", "Pair", "Double Pair", "Tris", "Straight", "Flush", "Full",
   "Poker", "Straight Flush", "Royal Flush"

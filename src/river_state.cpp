@@ -13,6 +13,7 @@ RiverState::RiverState(
   std::map<std::string, AppObject *> objects
 )
 : State(pApplication){
+  state_id = "RIVER";
   mObjects = objects;
 }
 
@@ -33,6 +34,7 @@ void RiverState::onExit(){
 
 
 void RiverState::render(){
+  State::render();
   mObjects["hand"]->render();
   mObjects["table"]->render();
   return;

@@ -8,7 +8,9 @@
 
 
 PreFlopState::PreFlopState(Application *pApplication)
-: State(pApplication){}
+: State(pApplication){
+  state_id = "PRE-FLOP";
+}
 
 
 void PreFlopState::onEnter(){
@@ -36,6 +38,7 @@ void PreFlopState::update(){
 
 
 void PreFlopState::render(){
+  State::render();
   mObjects["hand"]->render();
   return;
 }

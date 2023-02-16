@@ -4,26 +4,40 @@
 
 
 ConsoleRenderer::ConsoleRenderer()
-: Renderer(){}
+: Renderer(){
+  card_names = {
+    "2", "3", "4", "5", "6", "7", "8", "9", "T", "J", "Q", "K", "A"
+  };
+  card_suits = {
+    "Clubs", "Diamonds", "Hearts", "Spades"
+  };
+}
 
 void ConsoleRenderer::renderCard(Card *pCard){
+  std::string card_number = card_names[pCard->getValue()-2];
+  std::string card_suit = card_suits[pCard->getSuit()-1];
   std::cout
     << "\nCard: "
-    << pCard->getValue()
-    << pCard->getSuit() 
+    << card_number
+    << card_suit
     << std::endl;
   return;
 }
 
 
 void ConsoleRenderer::renderHand(Hand *pHand){
+  std::string card_number_1 = card_names[pHand->get_first_card().getValue()-2];
+  std::string card_suit_1 = card_suits[pHand->get_first_card().getSuit()-1];
+  std::string card_number_2 = card_names[pHand->get_second_card().getValue()-2];
+  std::string card_suit_2 = card_suits[pHand->get_second_card().getSuit()-1];
+
   std::cout
     << "\nYour hand: "
-    << pHand->get_first_card().getValue()
-    << pHand->get_first_card().getSuit()
+    << card_number_1
+    << card_suit_1
     << " "
-    << pHand->get_second_card().getValue()
-    << pHand->get_second_card().getSuit()
+    << card_number_2
+    << card_suit_2
     << std::endl;
   return;
 }
@@ -32,7 +46,9 @@ void ConsoleRenderer::renderHand(Hand *pHand){
 void ConsoleRenderer::renderTable(Table *pTable){
   std::cout << "\nThe table: ";
   for (auto &card: pTable->getCards()){
-    std::cout << " " << card.getValue() << card.getSuit();
+    std::string card_number = card_names[card.getValue()-2];
+    std::string card_suit = card_suits[card.getSuit()-1];
+    std::cout << " " << card_number << card_suit;
   }
   std::cout << std::endl;
   return;
@@ -59,5 +75,11 @@ void ConsoleRenderer::renderPoint(Point *pPoint){
     << pPoint->getKicker()
     << " kicker)"
     << std::endl;
+  return;
+}
+
+
+void ConsoleRenderer::renderState(std::string state_id){
+  std::cout << "\n======= " << state_id << " =======" << std::endl;
   return;
 }

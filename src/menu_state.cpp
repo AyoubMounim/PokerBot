@@ -5,7 +5,9 @@
 
 
 MenuState::MenuState(Application *pApplication)
-: State(pApplication){}
+: State(pApplication){
+  state_id = "MENU";
+}
 
 
 void MenuState::onEnter(){
@@ -26,6 +28,7 @@ void MenuState::update(){
 
 
 void MenuState::render(){
+  State::render();
   return;
 }
 

@@ -2,11 +2,14 @@
 #ifndef RENDERER
 #define RENDERER
 
-#include "card.hpp"
-#include "hand.hpp"
-#include "table.hpp"
-#include "deck.hpp"
-#include "point.hpp"
+#include <string>
+
+
+class Card;
+class Hand;
+class Table;
+class Deck;
+class Point;
 
 
 class Renderer{
@@ -16,6 +19,7 @@ class Renderer{
     virtual void renderTable(Table *pTable) = 0;
     virtual void renderDeck(Deck *pDeck) = 0;
     virtual void renderPoint(Point *pPoint) = 0;
+    virtual void renderState(std::string state_id) = 0;
   
   protected:
     Renderer(){}

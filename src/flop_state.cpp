@@ -12,6 +12,7 @@ FlopState::FlopState(
   std::map<std::string, AppObject *> objects
 )
 : State(pApplication){
+  state_id = "FLOP";
   mObjects = objects;
 }
 
@@ -37,6 +38,7 @@ void FlopState::update(){
 
 
 void FlopState::render(){
+  State::render();
   mObjects["hand"]->render();
   mObjects["table"]->render();
   return;

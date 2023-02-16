@@ -8,6 +8,8 @@
 #include "table.hpp"
 #include "deck.hpp"
 #include "point.hpp"
+#include <string>
+#include <vector>
 
 
 class ConsoleRenderer: public Renderer{
@@ -18,6 +20,11 @@ class ConsoleRenderer: public Renderer{
     virtual void renderTable(Table *pTable);
     virtual void renderDeck(Deck *pDeck);
     virtual void renderPoint(Point *pPoint);
+    virtual void renderState(std::string state_id);
+
+  private:
+    std::vector<std::string> card_names;
+    std::vector<std::string> card_suits;
 };
 
 #endif

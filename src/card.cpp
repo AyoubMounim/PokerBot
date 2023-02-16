@@ -3,15 +3,6 @@
 #include "card.hpp"
 
 
-const std::vector<std::string> card_names = {
-    "2", "3", "4", "5", "6", "7", "8", "9", "T", "J", "Q", "K", "A"
-};
-
-const std::vector<std::string> card_suits = {
-    "Clubs", "Diamonds", "Hearts", "Spades"
-};
-
-
 Card::Card(int value, suit s)
 : AppObject(){
     setSuit(s);
