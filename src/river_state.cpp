@@ -1,14 +1,14 @@
 
-#include "turn_state.hpp"
+#include "river_state.hpp"
 #include "application.hpp"
 #include "card.hpp"
 #include "deck.hpp"
-#include "table.hpp"
-#include "river_state.hpp"
+#include "pre_flop_state.hpp"
+#include <string>
 #include <iostream>
 
 
-TurnState::TurnState(
+RiverState::RiverState(
   Application *pApplication,
   std::map<std::string, AppObject *> objects
 )
@@ -17,35 +17,36 @@ TurnState::TurnState(
 }
 
 
-void TurnState::onEnter(){
-  std::cout << "Entering turn state." << std::endl;
+void RiverState::onEnter(){
+  std::cout << "Entering river state" << std::endl;
+
   Card drawnCard = dynamic_cast<Deck *>(mObjects["table_deck"])->drawCard();
   dynamic_cast<Table *>(mObjects["table"])->addCard(drawnCard);
   return;
 }
 
 
-void TurnState::onExit(){
-  std::cout << "Exiting turn state." << std::endl;
+void RiverState::onExit(){
+  std::cout << "Exiting river state" << std::endl;
   return;
 }
 
 
-void TurnState::render(){
+void RiverState::render(){
   mObjects["hand"]->render();
   mObjects["table"]->render();
   return;
 }
 
 
-void TurnState::update(){
+void RiverState::update(){
   return;
 }
 
 
-void TurnState::handleInput(){
+void RiverState::handleInput(){
   std::string user_input;
-  std::cout << "Press 'n' to go to river." << std::endl;
+  std::cout << "Press 'n' new game." << std::endl;
   std::cout << "Press 'q' to exit." << std::endl;
   std::cin >> user_input;
 
@@ -55,7 +56,7 @@ void TurnState::handleInput(){
   }
   else if (user_input == "n"){
     mApplication->changeState(
-      new RiverState(mApplication, mObjects)
+      new PreFlopState(mApplication)
     );
   }
   return;
