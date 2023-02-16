@@ -11,13 +11,13 @@ MenuState::MenuState(Application *pApplication)
 
 
 void MenuState::onEnter(){
-  std::cout << "\nEntering menu state." << std::endl;
+  State::onEnter();
   return;
 }
 
 
 void MenuState::onExit(){
-  std::cout << "Exiting menu state." << std::endl;
+  State::onExit();
   return;
 }
 
