@@ -1,6 +1,7 @@
 
 #include "menu_state.hpp"
 #include "presenter.hpp"
+#include "draw_state.hpp"
 
 
 MenuState::MenuState(Presenter *pPresenter)
@@ -29,7 +30,7 @@ void MenuState::handleInput(){
   std::cin >> input;
 
   if (input == "n"){
-    std::cout << "\nNew game." << std::endl;
+    mPresenter->changeState(new DrawState(mPresenter));
   }
   else if (input == "q"){
     onExit();
