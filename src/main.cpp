@@ -12,8 +12,8 @@ int main(){
   }
 
   while (myPresenter.getRunning()){
-    myPresenter.handleInput();
     myPresenter.update();
     myPresenter.render();
+    myPresenter.handleInput();
   }
 }
