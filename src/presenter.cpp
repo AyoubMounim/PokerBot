@@ -2,37 +2,47 @@
 #include "presenter.hpp"
 #include "model.hpp"
 #include "console_viewer.hpp"
+#include "menu_state.hpp"
 #include <iostream>
 #include <string>
 
 
 Presenter::Presenter(){
+  mState = nullptr;
+}
+
+
+bool Presenter::init(){
   mModel = new Model();
   mViewer = new ConsoleViewer();
+  changeState(new MenuState(this));
+  mRunning = true;
+  return true;
 }
 
 
 void Presenter::handleInput(){
-  std::string input;
-  std::cout << "Press 'n' for new card." << std::endl;
-  std::cin >> input;
-
-  if (input == "n"){
-    mModel->setCard();
-  }
-  else if (input == "q"){
-    std::cout << "Exit." << std::endl;
-  }
+  mState->handleInput();
   return;
 }
 
 
 void Presenter::update(){
+  mState->update();
   return;
 }
 
 
 void Presenter::render(){
-  mViewer->renderCard(getCard());
+  mState->render();
   return;
+}
+
+
+void Presenter::changeState(State *pState){
+  if (mState != nullptr){
+    mState->onExit();
+  }
+  mState = pState;
+  mState->onEnter();
 }

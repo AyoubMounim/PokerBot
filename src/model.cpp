@@ -1,22 +1,19 @@
 
 #include "model.hpp"
+#include <vector>
 
 
-Model::Model(){
-  mPlayerDeck = initializeDeck();
-  mTableDeck = initializeDeck();
-}
+Model::Model()
+: mPlayerDeck(initializeDeck()),
+  mTableDeck(initializeDeck()){}
 
 
 Deck Model::initializeDeck(){
-  Deck deck;
+  std::vector<Card> cards;
   for (int value = 2; value < 15; value++){
     for (int suit = 0; suit < 5; suit++){
-      Card card;
-      card.value = value;
-      card.suit = suit;
-      deck.deckCards.push_back(card);
+      cards.push_back(Card(value, suit));
     }
   }
-  return deck;
+  return Deck(cards);
 }

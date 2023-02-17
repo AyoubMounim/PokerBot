@@ -11,14 +11,11 @@ class Model{
     Model();
     Deck initializeDeck();
 
-    Card * getCard(){return &mCard;}
-    void setCard(){mCard = mDealer.drawCard(&mPlayerDeck);}
-
   private:
-    Card mCard;
     Deck mPlayerDeck;
     Deck mTableDeck;
     Hand mPlayerHand;
+    Table mTable;
     Dealer mDealer;
 };
 
