@@ -17,9 +17,6 @@ class PreflopState: public GameState{
 
     void resetTableDeck();
     void drawPreflop();
-
-    Hand * getHand();
-    Table * getTable();
 };
 
 #endif

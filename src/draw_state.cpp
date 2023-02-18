@@ -32,7 +32,7 @@ void DrawState::update(){
 
 
 void DrawState::render(){
-  mPresenter->getViewer()->renderHand(getHand());
+  mPresenter->getViewer()->renderHand(GameState::getHand());
   return;
 }
 
@@ -46,9 +46,4 @@ void DrawState::resetPlayerDeck(){
 void DrawState::drawHand(){
   mPresenter->getModel()->drawHand();
   return;
-}
-
-
-Hand * DrawState::getHand(){
-  return mPresenter->getModel()->getHand();
 }

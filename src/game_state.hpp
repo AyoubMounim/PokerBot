@@ -37,6 +37,9 @@ class GameState: public State{
     virtual void update(){}
     virtual void render(){}
 
+    Hand * getHand(){return mPresenter->getModel()->getHand();}
+    Table * getTable(){return mPresenter->getModel()->getTable();}
+
   protected:
     GameState(Presenter *pPresenter)
     : State(pPresenter){}

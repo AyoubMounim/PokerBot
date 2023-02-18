@@ -41,12 +41,12 @@ void Model::drawPreflop(){
 
 
 void Model::drawTurn(){
-  std::cout << "Drawing turn." << std::endl;
+  mTable = mDealer.drawTurn(&mTable, &mTableDeck);
   return;
 }
 
 
 void Model::drawRiver(){
-  std::cout << "Drawing river." << std::endl;
+  mTable = mDealer.drawRiver(&mTable, &mTableDeck);
   return;
 }

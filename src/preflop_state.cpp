@@ -1,12 +1,13 @@
 
 #include "preflop_state.hpp"
 #include "viewer.hpp"
+#include "turn_state.hpp"
 
 
 PreflopState::PreflopState(Presenter *pPresenter)
 : GameState(pPresenter){
   mStateId = "PREFLOP";
-  mNextState = nullptr;
+  mNextState = new TurnState(pPresenter);
 }
 
 
@@ -32,8 +33,8 @@ void PreflopState::update(){
 
 
 void PreflopState::render(){
-  mPresenter->getViewer()->renderHand(getHand());
-  mPresenter->getViewer()->renderTable(getTable());
+  mPresenter->getViewer()->renderHand(GameState::getHand());
+  mPresenter->getViewer()->renderTable(GameState::getTable());
   return;
 }
 
@@ -47,14 +48,4 @@ void PreflopState::resetTableDeck(){
 void PreflopState::drawPreflop(){
   mPresenter->getModel()->drawPreflop();
   return;
-}
-
-
-Hand * PreflopState::getHand(){
-  return mPresenter->getModel()->getHand();
-}
-
-
-Table * PreflopState::getTable(){
-  return mPresenter->getModel()->getTable();
 }

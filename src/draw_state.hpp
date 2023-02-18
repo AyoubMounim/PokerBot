@@ -16,7 +16,6 @@ class DrawState: public GameState{
     void render();
     void resetPlayerDeck();
     void drawHand();
-    Hand * getHand();
 };
 
 #endif
