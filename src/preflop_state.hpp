@@ -1,6 +1,6 @@
 
-#ifndef PREFLOP_STATE
-#define PREFLOP_STATE
+#ifndef DRAW_STATE
+#define DRAW_STATE
 
 #include "game_state.hpp"
 
@@ -14,9 +14,8 @@ class PreflopState: public GameState{
     void onExit();
     void update();
     void render();
-
-    void resetTableDeck();
-    void drawPreflop();
+    void resetPlayerDeck();
+    void drawHand();
 };
 
 #endif

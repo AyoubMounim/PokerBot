@@ -1,7 +1,7 @@
 
 #include "menu_state.hpp"
 #include "presenter.hpp"
-#include "draw_state.hpp"
+#include "preflop_state.hpp"
 
 
 MenuState::MenuState(Presenter *pPresenter)
@@ -30,7 +30,7 @@ void MenuState::handleInput(){
   std::cin >> input;
 
   if (input == "n"){
-    mPresenter->changeState(new DrawState(mPresenter));
+    mPresenter->changeState(new PreflopState(mPresenter));
   }
   else if (input == "q"){
     onExit();
