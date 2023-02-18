@@ -4,7 +4,7 @@
 
 #include "game_state.hpp"
 
-class Presetern;
+class Presenter;
 
 
 class DrawState: public GameState{
@@ -14,6 +14,9 @@ class DrawState: public GameState{
     void onExit();
     void update();
     void render();
+    void resetPlayerDeck();
+    void drawHand();
+    Hand * getHand();
 };
 
 #endif

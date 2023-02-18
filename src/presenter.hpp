@@ -21,12 +21,16 @@ class Presenter{
     void setRunning(bool running){mRunning = running;}
     bool getRunning(){return mRunning;}
     void changeState(State *pState);
+    Model * getModel(){return mModel;}
+    Viewer * getViewer(){return mViewer;}
   
   private:
     Model *mModel;
     Viewer *mViewer;
     State *mState;
     bool mRunning;
+  
+  friend State;
 };
 
 #endif

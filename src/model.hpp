@@ -9,7 +9,17 @@
 class Model{
   public:
     Model();
+    void drawHand();
+    void drawPreflop();
+    void drawTurn();
+    void drawRiver();
+
+    Hand * getHand(){return &mPlayerHand;}
+    Table * getTable(){return &mTable;}
+
     Deck initializeDeck();
+    void resetPlayerDeck(){mPlayerDeck = initializeDeck();}
+    void resetTableDeck(){mTableDeck = initializeDeck();}
 
   private:
     Deck mPlayerDeck;

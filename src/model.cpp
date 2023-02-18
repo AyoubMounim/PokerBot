@@ -1,11 +1,14 @@
 
 #include "model.hpp"
 #include <vector>
+#include <iostream>
+#include <stdexcept>
 
 
 Model::Model()
 : mPlayerDeck(initializeDeck()),
-  mTableDeck(initializeDeck()){}
+  mTableDeck(initializeDeck()){
+}
 
 
 Deck Model::initializeDeck(){
@@ -16,4 +19,34 @@ Deck Model::initializeDeck(){
     }
   }
   return Deck(cards);
+}
+
+
+void Model::drawHand(){
+  mPlayerHand = mDealer.drawHand(&mPlayerDeck);
+  return;
+}
+
+
+void Model::drawPreflop(){
+  if (mTable.tableCards.size() != 0){
+    throw std::logic_error("Card before preflop");
+  }
+  for (int i = 0; i < 3; i++){
+    Card drawnCard = mDealer.drawCard(&mTableDeck);
+    mTable.tableCards.push_back(drawnCard);
+  }
+  return;
+}
+
+
+void Model::drawTurn(){
+  std::cout << "Drawing turn." << std::endl;
+  return;
+}
+
+
+void Model::drawRiver(){
+  std::cout << "Drawing river." << std::endl;
+  return;
 }

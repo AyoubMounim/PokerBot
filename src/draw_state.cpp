@@ -1,17 +1,19 @@
 
 #include "draw_state.hpp"
+#include "viewer.hpp"
+#include "preflop_state.hpp"
 
 
 DrawState::DrawState(Presenter *pPresenter)
 : GameState(pPresenter){
   mStateId = "DRAW";
-  mNextState = nullptr;
+  mNextState = new PreflopState(pPresenter);
 }
 
 
 void DrawState::onEnter(){
   State::onEnter();
-  std::cout << "\n======= " << mStateId << " =======" << std::endl;
+  GameState::onEnter();
   return;
 }
 
@@ -23,10 +25,30 @@ void DrawState::onExit(){
 
 
 void DrawState::update(){
+  resetPlayerDeck();
+  drawHand();
   return;
 }
 
 
 void DrawState::render(){
+  mPresenter->getViewer()->renderHand(getHand());
   return;
+}
+
+
+void DrawState::resetPlayerDeck(){
+  mPresenter->getModel()->resetPlayerDeck();
+  return;
+}
+
+
+void DrawState::drawHand(){
+  mPresenter->getModel()->drawHand();
+  return;
+}
+
+
+Hand * DrawState::getHand(){
+  return mPresenter->getModel()->getHand();
 }
