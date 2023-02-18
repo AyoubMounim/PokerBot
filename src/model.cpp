@@ -28,19 +28,22 @@ void Model::drawHand(){
 }
 
 
-void Model::drawPreflop(){
-  mTable = mDealer.drawPreFlop(&mTableDeck);
+void Model::drawFlop(){
+  mTable = mDealer.drawFlop(&mTableDeck);
+  std::cout << mTableDeck.deckCards.size() << std::endl;
   return;
 }
 
 
 void Model::drawTurn(){
   mTable = mDealer.drawTurn(&mTable, &mTableDeck);
+  std::cout << mTableDeck.deckCards.size() << std::endl;
   return;
 }
 
 
 void Model::drawRiver(){
   mTable = mDealer.drawRiver(&mTable, &mTableDeck);
+  std::cout << mTableDeck.deckCards.size() << std::endl;
   return;
 }

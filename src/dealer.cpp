@@ -17,13 +17,13 @@ Hand Dealer::drawHand(Deck *pDeck){
 }
 
 
-Table Dealer::drawPreFlop(Deck *pDeck){
-  std::vector<Card> preFlop;
+Table Dealer::drawFlop(Deck *pDeck){
+  std::vector<Card> Flop;
   for (int i = 0; i < 3; i++){
     Card aCard = drawCard(pDeck);
-    preFlop.push_back(aCard); 
+    Flop.push_back(aCard); 
   }
-  return Table(preFlop);
+  return Table(Flop);
 }
 
 

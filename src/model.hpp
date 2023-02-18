@@ -10,7 +10,7 @@ class Model{
   public:
     Model();
     void drawHand();
-    void drawPreflop();
+    void drawFlop();
     void drawTurn();
     void drawRiver();
 

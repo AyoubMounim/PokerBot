@@ -45,6 +45,6 @@ void FlopState::resetTableDeck(){
 
 
 void FlopState::drawPreflop(){
-  mPresenter->getModel()->drawPreflop();
+  mPresenter->getModel()->drawFlop();
   return;
 }
