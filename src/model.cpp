@@ -1,6 +1,9 @@
 
 #include "model.hpp"
 #include <vector>
+#include <random>
+#include <algorithm>
+#include <chrono>
 #include <iostream>
 #include <stdexcept>
 
@@ -13,11 +16,14 @@ Model::Model()
 
 Deck Model::initializeDeck(){
   std::vector<Card> cards;
+  unsigned seed = std::chrono::system_clock::now().time_since_epoch().count();
+  std::default_random_engine e(seed);
   for (int value = 2; value < 15; value++){
     for (int suit = 0; suit < 4; suit++){
       cards.push_back(Card(value, suit));
     }
   }
+  std::shuffle(cards.begin(), cards.end(), e);
   return Deck(cards);
 }
 
