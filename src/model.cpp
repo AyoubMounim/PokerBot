@@ -50,3 +50,14 @@ void Model::drawRiver(){
   mTable = mDealer.drawRiver(&mTable, &mTableDeck);
   return;
 }
+
+void Model::setHand(Hand *pHand){
+  mPlayerHand = *pHand; //TODO: remove the card from deck
+  return;
+}
+
+
+void Model::setTable(Table *pTable){
+  mTable = *pTable; //TODO: remove the card from deck
+  return;
+}

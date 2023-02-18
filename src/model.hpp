@@ -13,6 +13,8 @@ class Model{
     void drawFlop();
     void drawTurn();
     void drawRiver();
+    void setHand(Hand *pHand);
+    void setTable(Table *pTable);
 
     Hand * getHand(){return &mPlayerHand;}
     Table * getTable(){return &mTable;}
@@ -28,6 +30,5 @@ class Model{
     Table mTable;
     Dealer mDealer;
 };
-
 
 #endif

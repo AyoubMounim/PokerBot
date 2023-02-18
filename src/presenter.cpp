@@ -2,6 +2,7 @@
 #include "presenter.hpp"
 #include "model.hpp"
 #include "console_viewer.hpp"
+#include "console_reader.hpp"
 #include "menu_state.hpp"
 #include <iostream>
 #include <string>
@@ -15,6 +16,7 @@ Presenter::Presenter(){
 bool Presenter::init(){
   mModel = new Model();
   mViewer = new ConsoleViewer();
+  mInputReader = new ConsoleReader();
   changeState(new MenuState(this));
   mRunning = true;
   return true;

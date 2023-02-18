@@ -7,6 +7,7 @@
 
 struct Card;
 class Viewer;
+class InputReader;
 
 
 class Presenter{
@@ -23,11 +24,13 @@ class Presenter{
     void changeState(State *pState);
     Model * getModel(){return mModel;}
     Viewer * getViewer(){return mViewer;}
+    InputReader * getInputReader(){return mInputReader;}
   
   private:
     Model *mModel;
     Viewer *mViewer;
     State *mState;
+    InputReader *mInputReader;
     bool mRunning;
   
   friend State;
