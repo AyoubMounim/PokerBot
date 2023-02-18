@@ -3,6 +3,7 @@
 #define CONSOLE_VIEWER
 
 #include "viewer.hpp"
+#include <string>
 
 struct Card;
 struct Hand;
@@ -15,6 +16,10 @@ class ConsoleViewer: public Viewer{
     void renderCard(Card *card);
     void renderHand(Hand *hand);
     void renderTable(Table *table);
+
+  private:
+    std::string suit_repr[4] = {"C", "D", "H", "S"};
+;
 };
 
 

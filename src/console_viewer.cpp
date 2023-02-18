@@ -5,10 +5,37 @@
 
 
 ConsoleViewer::ConsoleViewer()
-: Viewer(){}
+: Viewer(){
+}
 
 void ConsoleViewer::renderCard(Card *card){
-  std::cout << card->value << " " << card->suit;
+  std::string card_value;
+  switch (card->value){
+    case 14:
+      card_value = "A";
+      break;
+    
+    case 13:
+      card_value = "K";
+      break;
+
+    case 12:
+      card_value = "Q";
+      break;
+    
+    case 11:
+      card_value = "J";
+      break;
+    
+    case 10:
+      card_value = "T";
+      break;
+    
+    default:
+      card_value = std::to_string(card->value);
+      break;
+  }
+  std::cout << card_value << " " << suit_repr[card->suit];
   return;
 }
 

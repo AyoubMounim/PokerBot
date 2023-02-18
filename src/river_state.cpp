@@ -18,7 +18,7 @@ void RiverState::onEnter(){
 
 
 void RiverState::onExit(){
-  State::onEnter();
+  State::onExit();
   return;
 }
 
