@@ -1,14 +1,14 @@
 
 #include "turn_state.hpp"
 #include "viewer.hpp"
+#include "river_state.hpp"
 
 
 TurnState::TurnState(Presenter *pPresenter)
 : GameState(pPresenter){
   mStateId = "TURN";
-  mNextState = nullptr;
+  mNextState = new RiverState(pPresenter);
 }
-
 
 
 void TurnState::onEnter(){

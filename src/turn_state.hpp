@@ -6,7 +6,7 @@
 
 
 class TurnState: public GameState{
-  public:
+  public: 
     TurnState(Presenter *pPresenter);
     void onEnter();
     void onExit();

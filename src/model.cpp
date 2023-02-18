@@ -14,7 +14,7 @@ Model::Model()
 Deck Model::initializeDeck(){
   std::vector<Card> cards;
   for (int value = 2; value < 15; value++){
-    for (int suit = 0; suit < 5; suit++){
+    for (int suit = 0; suit < 4; suit++){
       cards.push_back(Card(value, suit));
     }
   }
@@ -29,13 +29,7 @@ void Model::drawHand(){
 
 
 void Model::drawPreflop(){
-  if (mTable.tableCards.size() != 0){
-    throw std::logic_error("Card before preflop");
-  }
-  for (int i = 0; i < 3; i++){
-    Card drawnCard = mDealer.drawCard(&mTableDeck);
-    mTable.tableCards.push_back(drawnCard);
-  }
+  mTable = mDealer.drawPreFlop(&mTableDeck);
   return;
 }
 
