@@ -2,12 +2,13 @@
 #include "preflop_input_state.hpp"
 #include "viewer.hpp"
 #include "input_reader.hpp"
+#include "flop_input_state.hpp"
 
 
 PreflopInputState::PreflopInputState(Presenter *pPresenter)
 : GameState(pPresenter){
   mStateId = "PREFLOP";
-  mNextState = nullptr;
+  mNextState = new FlopInputState(pPresenter);
 }
 
 
@@ -20,12 +21,13 @@ void PreflopInputState::onEnter(){
 
 
 void PreflopInputState::onExit(){
-  State::onEnter();
+  State::onExit();
   return;
 }
 
 
 void PreflopInputState::update(){
+  resetPlayerDeck();
   setHand();
   return;
 }
@@ -44,7 +46,7 @@ void PreflopInputState::resetPlayerDeck(){
 
 
 void PreflopInputState::setHand(){
-  Hand * pHand = mPresenter->getInputReader()->readHand();
+  Hand *pHand = mPresenter->getInputReader()->readHand();
   mPresenter->getModel()->setHand(pHand);
   return;
 }
