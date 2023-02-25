@@ -1,44 +1,44 @@
 
-#include "turn_input_state.hpp"
+#include "river_input_state.hpp"
 #include "viewer.hpp"
 #include "input_reader.hpp"
-#include "river_input_state.hpp"
+#include "menu_state.hpp"
 
 
-TurnInputState::TurnInputState(Presenter *pPresenter)
+RiverInputState::RiverInputState(Presenter *pPresenter)
 : GameState(pPresenter){
-  mStateId = "TURN";
-  mNextState = new RiverInputState(pPresenter);
+  mStateId = "RIVER";
+  mNextState = new MenuState(pPresenter);
 }
 
 
-void TurnInputState::onEnter(){
+void RiverInputState::onEnter(){
   State::onEnter();
   GameState::onEnter();
   return;
 }
 
 
-void TurnInputState::onExit(){
+void RiverInputState::onExit(){
   State::onExit();
   return;
 }
 
 
-void TurnInputState::update(){
-  setTurn();
+void RiverInputState::update(){
+  setRiver();
   return;
 }
 
 
-void TurnInputState::render(){
+void RiverInputState::render(){
   mPresenter->getViewer()->renderHand(GameState::getHand());
   mPresenter->getViewer()->renderTable(GameState::getTable());
   return;
 }
 
 
-void TurnInputState::setTurn(){
+void RiverInputState::setRiver(){
   Card *pCard = mPresenter->getInputReader()->readCard();
   mPresenter->getModel()->addToTable(pCard);
   return;
