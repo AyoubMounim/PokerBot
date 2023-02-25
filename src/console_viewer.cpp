@@ -62,6 +62,12 @@ void ConsoleViewer::renderTable(Table *table){
 
 
 void ConsoleViewer::renderRating(float rating){
-  std::cout << "\n Rating: " << rating << std::endl;
+  std::cout << "\nRating: " << rating << std::endl;
+  return;
+}
+
+
+void ConsoleViewer::renderPoint(Point *pPoint){
+  std::cout << "\nYour Hand is a: " << pPoint->name << std::endl;
   return;
 }

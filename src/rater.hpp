@@ -9,6 +9,7 @@ class Rater{
   public:
     float rateHand(Hand *pHand);
     float rateHand(Hand *pHand, Table *pTable);
+    Point nameHand(Hand *pHand, Table *pTable);
 };
 
 #endif

@@ -27,6 +27,7 @@ void RiverInputState::onExit(){
 
 void RiverInputState::update(){
   setRiver();
+  GameState::nameHand();
   GameState::rateHandTable();
   return;
 }
@@ -35,7 +36,8 @@ void RiverInputState::update(){
 void RiverInputState::render(){
   mPresenter->getViewer()->renderHand(GameState::getHand());
   mPresenter->getViewer()->renderTable(GameState::getTable());
-  mPresenter->getViewer()->renderRating(mPresenter->getRating());
+  mPresenter->getViewer()->renderPoint(GameState::getPoint());
+  mPresenter->getViewer()->renderRating(GameState::getRating());
   return;
 }
 

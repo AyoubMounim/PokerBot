@@ -29,6 +29,9 @@ class Presenter{
     void rateHand(){mModel->rateHand();}
     void rateHandTable(){mModel->rateHandTable();}
     float getRating(){return mModel->getRating();}
+
+    void nameHand(){mModel->nameHand();}
+    Point * getPoint(){return mModel->getPoint();}
   
   private:
     Model *mModel;

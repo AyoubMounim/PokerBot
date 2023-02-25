@@ -34,6 +34,9 @@ class Model{
     void rateHandTable(){rating = mRater.rateHand(&mPlayerHand, &mTable);}
     float getRating(){return rating;}
 
+    void nameHand(){mPoint = mRater.nameHand(&mPlayerHand, &mTable);}
+    Point * getPoint(){return &mPoint;}
+
   private:
     Deck mPlayerDeck;
     Deck mTableDeck;
@@ -41,9 +44,8 @@ class Model{
     Table mTable;
     Dealer mDealer;
     Rater mRater;
+    Point mPoint;
     float rating;
-  
-  friend Rater;
 };
 
 #endif

@@ -28,6 +28,7 @@ void FlopInputState::onExit(){
 void FlopInputState::update(){
   resetTableDeck();
   setTable();
+  GameState::nameHand();
   GameState::rateHandTable();
   return;
 }
@@ -36,7 +37,8 @@ void FlopInputState::update(){
 void FlopInputState::render(){
   mPresenter->getViewer()->renderHand(GameState::getHand());
   mPresenter->getViewer()->renderTable(GameState::getTable());
-  mPresenter->getViewer()->renderRating(mPresenter->getRating());
+  mPresenter->getViewer()->renderPoint(GameState::getPoint());
+  mPresenter->getViewer()->renderRating(GameState::getRating());
   return;
 }
 

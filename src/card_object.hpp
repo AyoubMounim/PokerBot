@@ -56,4 +56,19 @@ struct Table{
   }
 };
 
+
+struct Point{
+  std::string name;
+  Card kicker;
+  int grade;
+
+  Point(){}
+
+  Point(std::string point_name, Card pointKicker, int point_grade){
+    name = point_name;
+    kicker = pointKicker;
+    grade = point_grade;
+  }
+};
+
 #endif
