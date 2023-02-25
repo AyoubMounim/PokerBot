@@ -53,18 +53,43 @@ void Model::drawRiver(){
 
 
 void Model::addToTable(Card *pCard){
-  mTable.tableCards.push_back(*pCard); //TODO: remove card from deck
+  mTable.tableCards.push_back(*pCard);
+  removeCardTableDeck(pCard);
   return;
 }
 
 
 void Model::setHand(Hand *pHand){
-  mPlayerHand = *pHand; //TODO: remove the card from deck
+  mPlayerHand = *pHand;
+  removeCardPlayerDeck(&(pHand->firstCard));
+  removeCardPlayerDeck(&(pHand->secondCard));
   return;
 }
 
 
 void Model::setTable(Table *pTable){
-  mTable = *pTable; //TODO: remove the card from deck
+  mTable = *pTable;
+  for (auto &pCard: mTable.tableCards){
+    removeCardTableDeck(&pCard);
+  }
+  return;
+}
+
+
+void Model::removeCardPlayerDeck(Card *pCard){
+  removeCard(pCard, &mPlayerDeck);
+  return;
+}
+
+
+void Model::removeCardTableDeck(Card *pCard){
+  removeCard(pCard, &mTableDeck);
+  return;
+}
+
+
+void Model::removeCard(Card *pCard, Deck *pDeck){
+  // TODO: implement for real
+  std::cout << "Removed card: " << pCard->value << pCard->suit << std::endl;
   return;
 }
