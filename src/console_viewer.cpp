@@ -35,7 +35,7 @@ void ConsoleViewer::renderCard(Card *card){
       card_value = std::to_string(card->value);
       break;
   }
-  std::cout << card_value << " " << suit_repr[card->suit];
+  std::cout << card_value << "" << suit_repr[card->suit];
   return;
 }
 

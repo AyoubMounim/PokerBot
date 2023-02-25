@@ -14,7 +14,7 @@ Model::Model()
 }
 
 
-Deck Model::initializeDeck(){
+Deck Model::initializeDeck(bool shuffle){
   std::vector<Card> cards;
   unsigned seed = std::chrono::system_clock::now().time_since_epoch().count();
   std::default_random_engine e(seed);
@@ -23,7 +23,9 @@ Deck Model::initializeDeck(){
       cards.push_back(Card(value, suit));
     }
   }
-  std::shuffle(cards.begin(), cards.end(), e);
+  if (shuffle){
+    std::shuffle(cards.begin(), cards.end(), e);
+  }
   return Deck(cards);
 }
 
@@ -89,7 +91,13 @@ void Model::removeCardTableDeck(Card *pCard){
 
 
 void Model::removeCard(Card *pCard, Deck *pDeck){
-  // TODO: implement for real
-  std::cout << "Removed card: " << pCard->value << pCard->suit << std::endl;
-  return;
+  auto it = (pDeck->deckCards).begin();
+  while (it != (pDeck->deckCards).end()){
+    if (pCard->value == it->value && pCard->suit == it->suit){
+      (pDeck->deckCards).erase(it);
+      return;
+    }
+    it++;
+  }
+  throw std::logic_error("Card to remove not found.");
 }

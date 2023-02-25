@@ -25,7 +25,7 @@ class Model{
     Hand * getHand(){return &mPlayerHand;}
     Table * getTable(){return &mTable;}
 
-    Deck initializeDeck();
+    Deck initializeDeck(bool shuffle = true);
     void resetPlayerDeck(){mPlayerDeck = initializeDeck();}
     void resetTableDeck(){mTableDeck = initializeDeck();}
 

@@ -7,12 +7,19 @@
 Card * ConsoleReader::readCard(){
   std::string card_value; 
   std::string card_suit; 
+  std::string card;
+  /*
   std::cout << "Insert card value: ";
   std::cin >> card_value;
   std::cout << "\nInstert card suit: ";
   std::cin >> card_suit;
   std::cout << std::endl;
-
+  return buildCard(card_value, card_suit);
+  */
+  std::cout << "Insert card: ";
+  std::cin >> card;
+  card_value.push_back(card[0]);
+  card_suit.push_back(card[1]);
   return buildCard(card_value, card_suit);
 }
 
