@@ -27,6 +27,7 @@ void TurnInputState::onExit(){
 
 void TurnInputState::update(){
   setTurn();
+  GameState::rateHandTable();
   return;
 }
 
@@ -34,6 +35,7 @@ void TurnInputState::update(){
 void TurnInputState::render(){
   mPresenter->getViewer()->renderHand(GameState::getHand());
   mPresenter->getViewer()->renderTable(GameState::getTable());
+  mPresenter->getViewer()->renderRating(mPresenter->getRating());
   return;
 }
 

@@ -4,12 +4,10 @@
 
 
 float Rater::rateHand(Hand *pHand){
-  std::cout << "rating hand" << std::endl;
-  return 1;
+  return 11;
 }
 
 
 float Rater::rateHand(Hand *pHand, Table *pTable){
-  std::cout << "rating hand with table" << std::endl;
-  return 1;
+  return 13;
 }
