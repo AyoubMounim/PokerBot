@@ -17,7 +17,44 @@ Card * ConsoleReader::readCard(){
 }
 
 Card * ConsoleReader::buildCard(std::string card_value, std::string card_suit){
-  return new Card(14, 0); //TODO: implement for real
+  int value;
+  int suit;
+
+  // read card value
+  if (card_value == "A" || card_value == "a"){
+    value = 14;
+  }
+  else if (card_value == "K" || card_value == "k"){
+    value = 13;
+  }
+  else if (card_value == "Q" || card_value == "q"){
+    value = 12;
+  }
+  else if (card_value == "J" || card_value == "j"){
+    value = 11;
+  }
+  else if (card_value == "T" || card_value == "t"){
+    value = 10;
+  }
+  else{
+    value = std::stoi(card_value);
+  }
+
+  // read card suit
+  if (card_suit == "C" || card_suit == "c"){
+    suit = 0;
+  }
+  else if (card_suit == "D" || card_suit == "d"){
+    suit = 1;
+  }
+  else if (card_suit == "H" || card_suit == "h"){
+    suit = 2;
+  }
+  else if (card_suit == "S" || card_suit == "s"){
+    suit = 3;
+  }
+
+  return new Card(value, suit);
 }
 
 

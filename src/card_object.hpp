@@ -3,6 +3,7 @@
 #define CARD_OBJECT
 
 #include <vector>
+#include <stdexcept>
 
 
 struct Card{
@@ -12,6 +13,12 @@ struct Card{
   Card(){}
 
   Card(int card_value, int card_suit){
+    if (card_value < 2 || card_value > 14){
+      throw std::invalid_argument("Card value not valid.");
+    }
+    if (card_suit < 0 || card_suit > 3){
+      throw std::invalid_argument("Card suit not valid.");
+    }
     value = card_value;
     suit = card_suit;
   }
