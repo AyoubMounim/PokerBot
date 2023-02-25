@@ -40,6 +40,9 @@ class GameState: public State{
     Hand * getHand(){return mPresenter->getModel()->getHand();}
     Table * getTable(){return mPresenter->getModel()->getTable();}
 
+    void rateHand(){mPresenter->rateHand();}
+    void rateHandTable(){mPresenter->rateHandTable();}
+
   protected:
     GameState(Presenter *pPresenter)
     : State(pPresenter){}

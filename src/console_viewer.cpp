@@ -59,3 +59,9 @@ void ConsoleViewer::renderTable(Table *table){
   std::cout << std::endl;
   return;
 }
+
+
+void ConsoleViewer::renderRating(float rating){
+  std::cout << "\n Rating: " << rating << std::endl;
+  return;
+}

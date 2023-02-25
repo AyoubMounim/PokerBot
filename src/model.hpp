@@ -4,6 +4,7 @@
 
 #include "card_object.hpp"
 #include "dealer.hpp"
+#include "rater.hpp"
 
 
 class Model{
@@ -29,12 +30,20 @@ class Model{
     void resetPlayerDeck(){mPlayerDeck = initializeDeck();}
     void resetTableDeck(){mTableDeck = initializeDeck();}
 
+    void rateHand(){rating = mRater.rateHand(&mPlayerHand);}
+    void rateHandTable(){rating = mRater.rateHand(&mPlayerHand, &mTable);}
+    float getRating(){return rating;}
+
   private:
     Deck mPlayerDeck;
     Deck mTableDeck;
     Hand mPlayerHand;
     Table mTable;
     Dealer mDealer;
+    Rater mRater;
+    float rating;
+  
+  friend Rater;
 };
 
 #endif

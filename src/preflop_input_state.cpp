@@ -29,12 +29,14 @@ void PreflopInputState::onExit(){
 void PreflopInputState::update(){
   resetPlayerDeck();
   setHand();
+  GameState::rateHand();
   return;
 }
 
 
 void PreflopInputState::render(){
   mPresenter->getViewer()->renderHand(GameState::getHand());
+  mPresenter->getViewer()->renderRating(mPresenter->getRating());
   return;
 }
 

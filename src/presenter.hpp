@@ -25,6 +25,10 @@ class Presenter{
     Model * getModel(){return mModel;}
     Viewer * getViewer(){return mViewer;}
     InputReader * getInputReader(){return mInputReader;}
+
+    void rateHand(){mModel->rateHand();}
+    void rateHandTable(){mModel->rateHandTable();}
+    float getRating(){return mModel->getRating();}
   
   private:
     Model *mModel;

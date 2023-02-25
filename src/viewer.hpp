@@ -13,6 +13,7 @@ class Viewer{
     virtual void renderCard(Card *card) = 0;
     virtual void renderHand(Hand *hand) = 0;
     virtual void renderTable(Table *table) = 0;
+    virtual void renderRating(float rating) = 0;
   
   protected:
     Viewer(){};

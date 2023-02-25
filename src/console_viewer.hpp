@@ -16,6 +16,7 @@ class ConsoleViewer: public Viewer{
     void renderCard(Card *card);
     void renderHand(Hand *hand);
     void renderTable(Table *table);
+    void renderRating(float rating);
 
   private:
     std::string suit_repr[4] = {"C", "D", "H", "S"};
