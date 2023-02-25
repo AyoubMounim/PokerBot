@@ -2,12 +2,13 @@
 #include "flop_input_state.hpp"
 #include "viewer.hpp"
 #include "input_reader.hpp"
+#include "turn_input_state.hpp"
 
 
 FlopInputState::FlopInputState(Presenter *pPresenter)
 : GameState(pPresenter){
   mStateId = "FLOP";
-  mNextState = nullptr;
+  mNextState = new TurnInputState(pPresenter);
 }
 
 

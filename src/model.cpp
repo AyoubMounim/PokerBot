@@ -51,6 +51,13 @@ void Model::drawRiver(){
   return;
 }
 
+
+void Model::addToTable(Card *pCard){
+  mTable.tableCards.push_back(*pCard); //TODO: remove card from deck
+  return;
+}
+
+
 void Model::setHand(Hand *pHand){
   mPlayerHand = *pHand; //TODO: remove the card from deck
   return;

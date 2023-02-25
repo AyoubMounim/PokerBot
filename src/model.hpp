@@ -13,8 +13,10 @@ class Model{
     void drawFlop();
     void drawTurn();
     void drawRiver();
+
     void setHand(Hand *pHand);
     void setTable(Table *pTable);
+    void addToTable(Card *pCard);
 
     Hand * getHand(){return &mPlayerHand;}
     Table * getTable(){return &mTable;}
