@@ -96,6 +96,7 @@ Point * Rater::checkTris(std::vector<Card> *pCards){
         if (matches_count == 2 && (*pCards)[i].value >= maxCard.value){
           maxCard.value = (*pCards)[i].value;
           maxCard.suit = (*pCards)[i].suit;
+          tris = true;
         }
       }
     }
