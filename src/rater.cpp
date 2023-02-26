@@ -17,10 +17,6 @@ float Rater::rateHand(Hand *pHand, Table *pTable){
 Point Rater::nameHand(Hand *pHand, Table *pTable){
   std::vector<Card> cards;
   Point *pPoint;
-  if (pTable == nullptr){
-    std::cout << "Table empty" << std::endl;
-    return Point("Test", Card(14, 0), 0);
-  }
   cards.push_back(pHand->firstCard);
   cards.push_back(pHand->secondCard);
   for (auto &card: pTable->tableCards){
