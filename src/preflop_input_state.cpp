@@ -29,6 +29,7 @@ void PreflopInputState::onExit(){
 void PreflopInputState::update(){
   resetPlayerDeck();
   setHand();
+  GameState::nameHand();
   GameState::rateHand();
   return;
 }
@@ -36,7 +37,8 @@ void PreflopInputState::update(){
 
 void PreflopInputState::render(){
   mPresenter->getViewer()->renderHand(GameState::getHand());
-  mPresenter->getViewer()->renderRating(mPresenter->getRating());
+  mPresenter->getViewer()->renderPoint(GameState::getPoint());
+  mPresenter->getViewer()->renderRating(GameState::getRating());
   return;
 }
 

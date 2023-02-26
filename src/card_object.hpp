@@ -22,6 +22,8 @@ struct Card{
     value = card_value;
     suit = card_suit;
   }
+
+  bool operator > (const Card &aCard) const{return value > aCard.value;} 
 };
 
 

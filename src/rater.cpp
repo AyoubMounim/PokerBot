@@ -1,6 +1,7 @@
 
 #include "rater.hpp"
 #include <iostream>
+#include <algorithm>
 
 
 float Rater::rateHand(Hand *pHand){
@@ -14,5 +15,246 @@ float Rater::rateHand(Hand *pHand, Table *pTable){
 
 
 Point Rater::nameHand(Hand *pHand, Table *pTable){
-  return Point("Test", Card(14, 0), 0); // TODO: implement for real
+  std::vector<Card> cards;
+  Point *pPoint;
+  if (pTable == nullptr){
+    std::cout << "Table empty" << std::endl;
+    return Point("Test", Card(14, 0), 0);
+  }
+  cards.push_back(pHand->firstCard);
+  cards.push_back(pHand->secondCard);
+  for (auto &card: pTable->tableCards){
+    cards.push_back(card);
+  }
+  sort(cards.begin(), cards.end(), std::greater<Card>());
+  pPoint = checkRoyalFlush(&cards);
+  if (pPoint != nullptr){
+    return *pPoint;
+  }
+  pPoint = checkStraightFlush(&cards);
+  if (pPoint != nullptr){
+    return *pPoint;
+  }
+  pPoint = checkPoker(&cards);
+  if (pPoint != nullptr){
+    return *pPoint;
+  }
+  pPoint = checkFull(&cards);
+  if (pPoint != nullptr){
+    return *pPoint;
+  }
+  pPoint = checkFlush(&cards);
+  if (pPoint != nullptr){
+    return *pPoint;
+  }
+  pPoint = checkStraight(&cards);
+  if (pPoint != nullptr){
+    return *pPoint;
+  }
+  pPoint = checkTris(&cards);
+  if (pPoint != nullptr){
+    return *pPoint;
+  }
+  pPoint = checkPairs(&cards);
+  if (pPoint != nullptr){
+    return *pPoint;
+  }
+  return Point("HIGH CARD", cards[0], 0);
+}
+
+
+Point * Rater::checkPairs(std::vector<Card> *pCards){
+  int pairs_count = 0;
+  Card maxPairCard = Card(2, 0);
+
+  for (int i = 0; i < pCards->size(); i++){
+    for (int j = i+1; j < pCards->size(); j++){
+      if ((*pCards)[i].value == (*pCards)[j].value){
+        pairs_count++;
+        if ((*pCards)[i].value > maxPairCard.value){
+          maxPairCard.value = (*pCards)[i].value;
+          maxPairCard.suit = (*pCards)[i].suit;
+        }
+        break;
+      }
+    }
+  }
+  if (pairs_count == 0){
+    return nullptr;
+  }
+  else if (pairs_count == 1){
+    return new Point("PAIR", maxPairCard, 1);
+  }
+  return new Point("DOUBLE PAIR", maxPairCard, 2);
+}
+
+
+Point * Rater::checkTris(std::vector<Card> *pCards){
+  bool tris = false;
+  Card maxCard = Card(2, 0);
+  for (int i = 0; i < pCards->size(); i++){
+    int matches_count = 0;
+    for (int j = i+1; j < pCards->size(); j++){
+      if ((*pCards)[i].value == (*pCards)[j].value){
+        matches_count++;
+        if (matches_count == 2 && (*pCards)[i].value >= maxCard.value){
+          maxCard.value = (*pCards)[i].value;
+          maxCard.suit = (*pCards)[i].suit;
+        }
+      }
+    }
+  }
+  if (!tris){
+    return nullptr;
+  }
+  return new Point("TRIS", maxCard, 3);
+}
+
+
+Point * Rater::checkStraight(std::vector<Card> *pCards){
+  if ((*pCards)[0].value == 14 && (*pCards)[1].value < 5){
+    return nullptr;
+  }
+  if ((*pCards)[0].value < 6){
+    return nullptr;
+  }
+  Card maxCard = Card(2, 0);
+  int continuity;
+  for (int i = 0; i < pCards->size()-1; i++){
+    if ((*pCards)[i].value - (*pCards)[i+1].value == 1){
+      continuity++;
+      if (continuity == 1){
+        maxCard.value = (*pCards)[i].value;
+        maxCard.suit = (*pCards)[i].suit;
+      }
+      else if (continuity == 4){
+        break;
+      }
+    }
+    else{
+      continuity = 0;
+    }
+  }
+  if (continuity == 3 && pCards->back().value == 2){
+    if ((*pCards)[0].value == 14){
+      return new Point("STRAIGHT", maxCard, 4);
+    }
+  }
+  else if (continuity >= 4){
+    return new Point("STRAIGHT", maxCard, 4);
+  }
+  return nullptr;
+}
+
+
+Point * Rater::checkFlush(std::vector<Card> *pCards){
+  int suit_count[4] = {0};
+  for (auto &card: *pCards){
+    suit_count[card.suit]++;
+  }
+  int max_suit = std::max_element(suit_count, suit_count+4) - suit_count;
+  int max_suit_count = suit_count[max_suit];
+  if (max_suit_count >= 5){
+    Card maxCard = Card(2, 0);
+    for (auto &card: *pCards){
+      if (card.suit != max_suit){
+        continue;
+      }
+      if (card.value >= maxCard.value){
+        maxCard = card;
+      }
+    }
+    return new Point("FLUSH", maxCard, 5);
+  }
+  return nullptr;
+}
+
+
+Point * Rater::checkFull(std::vector<Card> *pCards){
+  Point * Tris = checkTris(pCards);
+  if (Tris == nullptr){
+    return nullptr;
+  }
+  std::vector<Card> newCards;
+  for (auto &card: *pCards){
+    if (card.value != Tris->kicker.value){
+      newCards.push_back(card);
+    }
+  }
+  if (checkPairs(&newCards) == nullptr){
+    return nullptr;
+  }
+  return new Point("FULL", Tris->kicker, 6);
+}
+
+
+Point * Rater::checkPoker(std::vector<Card> *pCards){
+  bool poker = false;
+  Card maxCard = Card(2, 0);
+  for (int i = 0; i < pCards->size() - 1; i++){
+    int matches_count = 0;
+    for (int j = i+1; j < pCards->size(); j++){
+      if ((*pCards)[i].value == (*pCards)[j].value){
+        matches_count++;
+        if (matches_count >= 3 && (*pCards)[i].value >= maxCard.value){
+          maxCard = (*pCards)[i];
+          poker = true;
+        }
+      }
+    }
+  }
+  if (!poker){
+    return nullptr;
+  }
+  return new Point("POKER", maxCard, 7);
+}
+
+
+Point * Rater::checkStraightFlush(std::vector<Card> *pCards){
+  Point * Straight;
+  int suit_count[4] = {0};
+  for (auto &card: *pCards){
+    suit_count[card.suit]++;
+  }
+  int max_suit = std::max_element(suit_count, suit_count+4) - suit_count;
+  int max_suit_count = suit_count[max_suit];
+  if (max_suit_count < 5){
+    return nullptr;
+  }
+  std::vector<Card> newCards;
+  for (auto &card: *pCards){
+    if (card.suit == max_suit){
+      newCards.push_back(card);
+    }
+  }
+  Straight = checkStraight(&newCards);
+  if (Straight == nullptr){
+    return nullptr;
+  }
+  return new Point("STRAIGHT FLUSH", Straight->kicker, 8);
+}
+
+
+Point * Rater::checkRoyalFlush(std::vector<Card> *pCards){
+  Point * Straight;
+  int suit_count[4] = {0};
+  for (auto &card: *pCards){
+    suit_count[card.suit]++;
+  }
+  int max_suit = std::max_element(suit_count, suit_count+4) - suit_count;
+  int max_suit_count = suit_count[max_suit];
+  if (max_suit_count < 5){
+    return nullptr;
+  }
+  std::vector<Card> newCards;
+  for (auto &card: *pCards){
+    if (card.suit == max_suit){
+      newCards.push_back(card);
+    }
+  }
+  Straight = checkStraight(&newCards);
+  if (Straight == nullptr || Straight->kicker.value < 14){
+    return nullptr;
+  }
+  return new Point("ROYAL FLUSH", Straight->kicker, 9);
 }
