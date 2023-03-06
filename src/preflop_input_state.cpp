@@ -31,6 +31,7 @@ void PreflopInputState::update(){
   setHand();
   GameState::nameHand();
   GameState::rateHand();
+  mPresenter->popolateOpponentsHand();
   return;
 }
 
@@ -39,6 +40,9 @@ void PreflopInputState::render(){
   mPresenter->getViewer()->renderHand(GameState::getHand());
   mPresenter->getViewer()->renderPoint(GameState::getPoint());
   mPresenter->getViewer()->renderRating(GameState::getRating());
+  for (auto &hand: mPresenter->getOpponentHand()){
+    //mPresenter->getViewer()->renderHand(hand);
+  }
   return;
 }
 

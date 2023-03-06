@@ -255,3 +255,49 @@ Point * Rater::checkRoyalFlush(std::vector<Card> *pCards){
   }
   return new Point("ROYAL FLUSH", Straight->kicker, 9);
 }
+
+std::vector<Hand *> Rater::generateHands(Deck *pDeck, int nOpponents){
+  int n = pDeck->deckCards.size();
+  int k = nOpponents*2;
+  std::vector<bool> selector_outer(n);
+  std::vector<bool> selector_inner(k);
+  std::vector<Hand *> hands;
+  std::vector<int> combinations_temp(k);
+  std::fill(selector_outer.begin(), selector_outer.begin() + k, true);
+  std::fill(selector_inner.begin(), selector_inner.begin() + 2, true);
+  int combination = 0;
+  do{
+    combinations_temp.clear();
+    int group_count = 0;
+    for (int i = 0; i < n; i++){
+      if (selector_outer[i]){
+        combinations_temp.push_back(i);
+        group_count++;
+        if (group_count == k){
+          break;
+        }
+      }
+    }
+    do{
+      combination++;
+      Card * pCards[2] = {nullptr, nullptr};
+      int cards = 0;
+      for (int j = 0; j < k; j++){
+        if (selector_inner[j]){
+          pCards[cards] = &(pDeck->deckCards[combinations_temp[j]]);
+          cards++;
+          if (cards==2){
+            break;
+          }
+        }
+      }
+      hands.push_back(
+        new Hand(*pCards[0], *pCards[1])
+      );
+    }
+    while (std::prev_permutation(selector_inner.begin(), selector_inner.end()));
+  }
+  while (std::prev_permutation(selector_outer.begin(), selector_outer.end()));
+  std::cout << "COMBINATIONS: " << combination << std::endl;
+  return hands;
+}

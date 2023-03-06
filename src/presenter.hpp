@@ -35,6 +35,9 @@ class Presenter{
 
     void nameHand(){mModel->nameHand();}
     Point * getPoint(){return mModel->getPoint();}
+
+    void popolateOpponentsHand(){mModel->popolateOpponentsHand();}
+    std::vector<Hand *> getOpponentHand(){return mModel->getOpponentsHand();}
   
   private:
     Model *mModel;

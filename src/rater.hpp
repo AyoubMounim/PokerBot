@@ -12,6 +12,8 @@ class Rater{
     float rateHand(Hand *pHand, Table *pTable);
     Point nameHand(Hand *pHand, Table *pTable);
 
+    std::vector<Hand *> generateHands(Deck *pDeck, int nOpponents);
+
     Point * checkPairs(std::vector<Card> *pCards);
     Point * checkTris(std::vector<Card> *pCards);
     Point * checkStraight(std::vector<Card> *pCards);

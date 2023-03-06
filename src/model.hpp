@@ -37,6 +37,11 @@ class Model{
     void nameHand(){mPoint = mRater.nameHand(&mPlayerHand, &mTable);}
     Point * getPoint(){return &mPoint;}
 
+    void popolateOpponentsHand(){
+      mOpponentsHand = mRater.generateHands(&mPlayerDeck, 1);
+    }
+    std::vector<Hand *> getOpponentsHand(){return mOpponentsHand;}
+
   private:
     Deck mPlayerDeck;
     Deck mTableDeck;
@@ -45,6 +50,7 @@ class Model{
     Dealer mDealer;
     Rater mRater;
     Point mPoint;
+    std::vector<Hand *> mOpponentsHand;
     float rating;
 };
 
