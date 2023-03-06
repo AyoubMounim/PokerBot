@@ -25,7 +25,7 @@ void FlopState::onExit(){
 
 
 void FlopState::update(){
-  resetTableDeck();
+  mPresenter->resetTableDeck();
   drawPreflop();
   return;
 }

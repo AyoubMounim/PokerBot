@@ -32,9 +32,13 @@ void MenuState::handleInput(){
   std::cin >> input;
 
   if (input == "n"){
+    mPresenter->resetPlayerDeck();
+    mPresenter->resetTableDeck();
     mPresenter->changeState(new PreflopState(mPresenter));
   }
   else if (input == "s"){
+    mPresenter->resetPlayerDeck();
+    mPresenter->resetTableDeck();
     mPresenter->changeState(new PreflopInputState(mPresenter));
   }
   else if (input == "q"){

@@ -10,7 +10,7 @@
                 "-std=c++17",
                 "${workspaceFolder}/src/*.cpp",
                 "-o",
-                "${workspaceFolder}/build/${fileBasenameNoExtension}"
+                "${workspaceFolder}/build/poker"
             ],
             "options": {
                 "cwd": "${workspaceFolder}"

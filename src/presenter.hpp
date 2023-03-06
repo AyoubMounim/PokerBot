@@ -26,6 +26,9 @@ class Presenter{
     Viewer * getViewer(){return mViewer;}
     InputReader * getInputReader(){return mInputReader;}
 
+    void resetPlayerDeck(){mModel->resetPlayerDeck();}
+    void resetTableDeck(){mModel->resetTableDeck();}
+
     void rateHand(){mModel->rateHand();}
     void rateHandTable(){mModel->rateHandTable();}
     float getRating(){return mModel->getRating();}
