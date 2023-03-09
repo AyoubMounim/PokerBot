@@ -28,6 +28,7 @@ class Presenter{
 
     void resetPlayerDeck(){mModel->resetPlayerDeck();}
     void resetTableDeck(){mModel->resetTableDeck();}
+    void clearTable(){mModel->clearTable();}
 
     void rateHand(){mModel->rateHand();}
     void rateHandTable(){mModel->rateHandTable();}

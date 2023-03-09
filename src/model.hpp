@@ -18,6 +18,7 @@ class Model{
     void setHand(Hand *pHand);
     void setTable(Table *pTable);
     void addToTable(Card *pCard);
+    void clearTable(){mTable.tableCards.clear();}
 
     void removeCardPlayerDeck(Card *pCard);
     void removeCardTableDeck(Card *pCard);
