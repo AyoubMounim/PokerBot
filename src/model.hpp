@@ -31,7 +31,14 @@ class Model{
     void resetTableDeck(){mTableDeck = initializeDeck();}
 
     void rateHand(){rating = mRater.rateHand(&mPlayerHand);}
-    void rateHandTable(){rating = mRater.rateHand(&mPlayerHand, &mTable);}
+    void rateHandTable(){
+      rating = mRater.rateHand(
+        &mPlayerHand,
+        &mPlayerDeck,
+        &mTable,
+        n_opponents
+      );
+    }
     float getRating(){return rating;}
 
     void nameHand(){mPoint = mRater.nameHand(&mPlayerHand, &mTable);}
@@ -51,6 +58,7 @@ class Model{
     Rater mRater;
     Point mPoint;
     std::vector<Hand *> mOpponentsHand;
+    int n_opponents;
     float rating;
 };
 

@@ -9,7 +9,7 @@
 class Rater{
   public:
     float rateHand(Hand *pHand);
-    float rateHand(Hand *pHand, Table *pTable);
+    float rateHand(Hand *pHand, Deck *pDeck, Table *pTable, int n_opponents);
     Point nameHand(Hand *pHand, Table *pTable);
 
     std::vector<Hand *> generateHands(Deck *pDeck, int nOpponents);

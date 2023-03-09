@@ -9,8 +9,25 @@ float Rater::rateHand(Hand *pHand){
 }
 
 
-float Rater::rateHand(Hand *pHand, Table *pTable){
-  return 13;
+float Rater::rateHand(Hand *pHand, Deck *pDeck, Table *pTable, int n_opponents){
+  std::vector<Hand *> opponentsHand = generateHands(pDeck, n_opponents);
+  Point playerPoint = nameHand(pHand, pTable);
+  Point opponentPoint;
+  int win = 0;
+  int n_hands = 0;
+  for (auto &hand: opponentsHand){
+    opponentPoint = nameHand(hand, pTable);
+    if (playerPoint.grade > opponentPoint.grade){
+      win++;
+    }
+    else if (opponentPoint.grade == playerPoint.grade){
+      if (playerPoint.kicker.value > opponentPoint.kicker.value){
+        win++;
+      }
+    }
+    n_hands++;
+  }
+  return win/float(n_hands);
 }
 
 
@@ -298,6 +315,6 @@ std::vector<Hand *> Rater::generateHands(Deck *pDeck, int nOpponents){
     while (std::prev_permutation(selector_inner.begin(), selector_inner.end()));
   }
   while (std::prev_permutation(selector_outer.begin(), selector_outer.end()));
-  std::cout << "COMBINATIONS: " << combination << std::endl;
+  std::cout << "COMBINATION: " << combination << std::endl;
   return hands;
 }
