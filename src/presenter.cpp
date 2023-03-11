@@ -16,7 +16,7 @@ Presenter::Presenter(){
 
 
 bool Presenter::init(){
-  mModel = new Model(new SmartRater());
+  mModel = new Model(new BruteRater());
   mViewer = new ConsoleViewer();
   mInputReader = new ConsoleReader();
   changeState(new MenuState(this));
