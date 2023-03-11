@@ -42,7 +42,6 @@ class GameState: public State{
     Point * getPoint(){return mPresenter->getPoint();}
     float getRating(){return mPresenter->getRating();}
 
-    void rateHand(){mPresenter->rateHand();}
     void rateHandTable(){mPresenter->rateHandTable();}
     void nameHand(){mPresenter->nameHand();}
 

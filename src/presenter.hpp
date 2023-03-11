@@ -32,15 +32,11 @@ class Presenter{
     void resetTableDeck(){mModel->resetTableDeck();}
     void clearTable(){mModel->clearTable();}
 
-    void rateHand(){mModel->rateHand();}
     void rateHandTable(){mModel->rateHandTable();}
     float getRating(){return mModel->getRating();}
 
     void nameHand(){mModel->nameHand();}
     Point * getPoint(){return mModel->getPoint();}
-
-    void popolateOpponentsHand(){mModel->popolateOpponentsHand();}
-    std::vector<Hand *> getOpponentHand(){return mModel->getOpponentsHand();}
   
   private:
     Model *mModel;

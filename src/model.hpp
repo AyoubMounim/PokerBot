@@ -9,7 +9,7 @@
 
 class Model{
   public:
-    Model();
+    Model(Rater *pRater);
     void drawHand();
     void drawFlop();
     void drawTurn();
@@ -32,9 +32,8 @@ class Model{
     void resetPlayerDeck(){mPlayerDeck = initializeDeck();}
     void resetTableDeck(){mTableDeck = initializeDeck();}
 
-    void rateHand(){rating = mRater.rateHand(&mPlayerHand);}
     void rateHandTable(){
-      rating = mRater.rateHand(
+      rating = mRater->rateHand(
         &mPlayerHand,
         &mPlayerDeck,
         &mTable,
@@ -43,13 +42,8 @@ class Model{
     }
     float getRating(){return rating;}
 
-    void nameHand(){mPoint = mRater.nameHand(&mPlayerHand, &mTable);}
+    void nameHand(){mPoint = mRater->nameHand(&mPlayerHand, &mTable);}
     Point * getPoint(){return &mPoint;}
-
-    void popolateOpponentsHand(){
-      mOpponentsHand = mRater.generateHands(&mPlayerDeck, 1);
-    }
-    std::vector<Hand *> getOpponentsHand(){return mOpponentsHand;}
 
   private:
     Deck mPlayerDeck;
@@ -57,9 +51,8 @@ class Model{
     Hand mPlayerHand;
     Table mTable;
     Dealer mDealer;
-    Rater mRater;
+    Rater *mRater;
     Point mPoint;
-    std::vector<Hand *> mOpponentsHand;
     int n_opponents;
     float rating;
 };

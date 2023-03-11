@@ -6,6 +6,7 @@
 #include "menu_state.hpp"
 #include <iostream>
 #include <string>
+#include "brute_rater.hpp"
 
 
 Presenter::Presenter(){
@@ -14,7 +15,7 @@ Presenter::Presenter(){
 
 
 bool Presenter::init(){
-  mModel = new Model();
+  mModel = new Model(new BruteRater());
   mViewer = new ConsoleViewer();
   mInputReader = new ConsoleReader();
   changeState(new MenuState(this));

@@ -1,15 +1,10 @@
 
-#include "rater.hpp"
+#include "brute_rater.hpp"
 #include <iostream>
 #include <algorithm>
 
 
-float Rater::rateHand(Hand *pHand){
-  return 11;
-}
-
-
-float Rater::rateHand(Hand *pHand, Deck *pDeck, Table *pTable, int n_opponents){
+float BruteRater::rateHand(Hand *pHand, Deck *pDeck, Table *pTable, int n_opponents){
   std::vector<Hand *> opponentsHand = generateHands(pDeck, n_opponents);
   Point playerPoint = nameHand(pHand, pTable);
   Point opponentPoint;
@@ -31,7 +26,7 @@ float Rater::rateHand(Hand *pHand, Deck *pDeck, Table *pTable, int n_opponents){
 }
 
 
-Point Rater::nameHand(Hand *pHand, Table *pTable){
+Point BruteRater::nameHand(Hand *pHand, Table *pTable){
   std::vector<Card> cards;
   Point *pPoint;
   cards.push_back(pHand->firstCard);
@@ -76,7 +71,7 @@ Point Rater::nameHand(Hand *pHand, Table *pTable){
 }
 
 
-Point * Rater::checkPairs(std::vector<Card> *pCards){
+Point * BruteRater::checkPairs(std::vector<Card> *pCards){
   int pairs_count = 0;
   Card maxPairCard = Card(2, 0);
 
@@ -102,7 +97,7 @@ Point * Rater::checkPairs(std::vector<Card> *pCards){
 }
 
 
-Point * Rater::checkTris(std::vector<Card> *pCards){
+Point * BruteRater::checkTris(std::vector<Card> *pCards){
   bool tris = false;
   Card maxCard = Card(2, 0);
   for (int i = 0; i < pCards->size(); i++){
@@ -125,7 +120,7 @@ Point * Rater::checkTris(std::vector<Card> *pCards){
 }
 
 
-Point * Rater::checkStraight(std::vector<Card> *pCards){
+Point * BruteRater::checkStraight(std::vector<Card> *pCards){
   if ((*pCards)[0].value == 14 && (*pCards)[1].value < 5){
     return nullptr;
   }
@@ -161,7 +156,7 @@ Point * Rater::checkStraight(std::vector<Card> *pCards){
 }
 
 
-Point * Rater::checkFlush(std::vector<Card> *pCards){
+Point * BruteRater::checkFlush(std::vector<Card> *pCards){
   int suit_count[4] = {0};
   for (auto &card: *pCards){
     suit_count[card.suit]++;
@@ -184,7 +179,7 @@ Point * Rater::checkFlush(std::vector<Card> *pCards){
 }
 
 
-Point * Rater::checkFull(std::vector<Card> *pCards){
+Point * BruteRater::checkFull(std::vector<Card> *pCards){
   Point * Tris = checkTris(pCards);
   if (Tris == nullptr){
     return nullptr;
@@ -202,7 +197,7 @@ Point * Rater::checkFull(std::vector<Card> *pCards){
 }
 
 
-Point * Rater::checkPoker(std::vector<Card> *pCards){
+Point * BruteRater::checkPoker(std::vector<Card> *pCards){
   bool poker = false;
   Card maxCard = Card(2, 0);
   for (int i = 0; i < pCards->size() - 1; i++){
@@ -224,7 +219,7 @@ Point * Rater::checkPoker(std::vector<Card> *pCards){
 }
 
 
-Point * Rater::checkStraightFlush(std::vector<Card> *pCards){
+Point * BruteRater::checkStraightFlush(std::vector<Card> *pCards){
   Point * Straight;
   int suit_count[4] = {0};
   for (auto &card: *pCards){
@@ -249,7 +244,7 @@ Point * Rater::checkStraightFlush(std::vector<Card> *pCards){
 }
 
 
-Point * Rater::checkRoyalFlush(std::vector<Card> *pCards){
+Point * BruteRater::checkRoyalFlush(std::vector<Card> *pCards){
   Point * Straight;
   int suit_count[4] = {0};
   for (auto &card: *pCards){
@@ -273,7 +268,7 @@ Point * Rater::checkRoyalFlush(std::vector<Card> *pCards){
   return new Point("ROYAL FLUSH", Straight->kicker, 9);
 }
 
-std::vector<Hand *> Rater::generateHands(Deck *pDeck, int nOpponents){
+std::vector<Hand *> BruteRater::generateHands(Deck *pDeck, int nOpponents){
   int n = pDeck->deckCards.size();
   int k = nOpponents*2;
   std::vector<bool> selector_outer(n);

@@ -8,9 +8,10 @@
 #include <stdexcept>
 
 
-Model::Model()
+Model::Model(Rater *pRater)
 : mPlayerDeck(initializeDeck()),
-  mTableDeck(initializeDeck()){
+  mTableDeck(initializeDeck()),
+  mRater(pRater){
 }
 
 
