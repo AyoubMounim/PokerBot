@@ -48,3 +48,9 @@ void Presenter::changeState(State *pState){
   mState = pState;
   mState->onEnter();
 }
+
+void Presenter::setNumOpponents(){
+  int n_opponents = mInputReader->readNumOpponents();
+  mModel->setNumOpponents(n_opponents);
+  return;
+}

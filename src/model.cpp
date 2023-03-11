@@ -11,7 +11,6 @@
 Model::Model()
 : mPlayerDeck(initializeDeck()),
   mTableDeck(initializeDeck()){
-    n_opponents = 1;
 }
 
 

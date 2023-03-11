@@ -315,6 +315,5 @@ std::vector<Hand *> Rater::generateHands(Deck *pDeck, int nOpponents){
     while (std::prev_permutation(selector_inner.begin(), selector_inner.end()));
   }
   while (std::prev_permutation(selector_outer.begin(), selector_outer.end()));
-  std::cout << "COMBINATION: " << combination << std::endl;
   return hands;
 }

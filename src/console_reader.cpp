@@ -83,3 +83,11 @@ Table * ConsoleReader::readTable(int n_cards){
   }
   return new Table(tableCards);
 }
+
+int ConsoleReader::readNumOpponents(){
+  int n_opponents;
+  std::cout << "\nInsert number of opponents: ";
+  std::cin >> n_opponents;
+  std::cout << std::endl;
+  return n_opponents;
+}

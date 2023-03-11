@@ -19,6 +19,8 @@ class Presenter{
     void update();
     void render();
 
+    void setNumOpponents();
+
     void setRunning(bool running){mRunning = running;}
     bool getRunning(){return mRunning;}
     void changeState(State *pState);

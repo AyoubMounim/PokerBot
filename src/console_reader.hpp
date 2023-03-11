@@ -11,6 +11,7 @@ class ConsoleReader: public InputReader{
     Card * readCard();
     Hand * readHand();
     Table * readTable(int n_cards);
+    int readNumOpponents();
 
   private:
     Card * buildCard(std::string card_value, std::string card_suit);

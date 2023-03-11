@@ -10,6 +10,7 @@ class InputReader{
     virtual Card * readCard() = 0;
     virtual Hand * readHand() = 0;
     virtual Table * readTable(int n_cards) = 0;
+    virtual int readNumOpponents() = 0;
 
   protected:
     InputReader(){};
