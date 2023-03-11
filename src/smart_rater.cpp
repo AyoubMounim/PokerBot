@@ -1,31 +1,14 @@
 
-#include "brute_rater.hpp"
+#include "smart_rater.hpp"
 #include <algorithm>
 
 
-float BruteRater::rateHand(Hand *pHand, Deck *pDeck, Table *pTable, int n_opponents){
-  std::vector<Hand *> opponentsHand = generateHands(pDeck, n_opponents);
-  Point playerPoint = nameHand(pHand, pTable);
-  Point opponentPoint;
-  int win = 0;
-  int n_hands = 0;
-  for (auto &hand: opponentsHand){
-    opponentPoint = nameHand(hand, pTable);
-    if (playerPoint.grade > opponentPoint.grade){
-      win++;
-    }
-    else if (opponentPoint.grade == playerPoint.grade){
-      if (playerPoint.kicker.value > opponentPoint.kicker.value){
-        win++;
-      }
-    }
-    n_hands++;
-  }
-  return win/float(n_hands);
+float SmartRater::rateHand(Hand *pHand, Deck *pDeck, Table *pTable, int n_opponents){
+  return -1;
 }
 
 
-Point BruteRater::nameHand(Hand *pHand, Table *pTable){
+Point SmartRater::nameHand(Hand *pHand, Table *pTable){
   std::vector<Card> cards;
   Point *pPoint;
   cards.push_back(pHand->firstCard);
@@ -70,7 +53,7 @@ Point BruteRater::nameHand(Hand *pHand, Table *pTable){
 }
 
 
-Point * BruteRater::checkPairs(std::vector<Card> *pCards){
+Point * SmartRater::checkPairs(std::vector<Card> *pCards){
   int pairs_count = 0;
   Card maxPairCard = Card(2, 0);
 
@@ -96,7 +79,7 @@ Point * BruteRater::checkPairs(std::vector<Card> *pCards){
 }
 
 
-Point * BruteRater::checkTris(std::vector<Card> *pCards){
+Point * SmartRater::checkTris(std::vector<Card> *pCards){
   bool tris = false;
   Card maxCard = Card(2, 0);
   for (int i = 0; i < pCards->size(); i++){
@@ -119,7 +102,7 @@ Point * BruteRater::checkTris(std::vector<Card> *pCards){
 }
 
 
-Point * BruteRater::checkStraight(std::vector<Card> *pCards){
+Point * SmartRater::checkStraight(std::vector<Card> *pCards){
   if ((*pCards)[0].value == 14 && (*pCards)[1].value < 5){
     return nullptr;
   }
@@ -155,7 +138,7 @@ Point * BruteRater::checkStraight(std::vector<Card> *pCards){
 }
 
 
-Point * BruteRater::checkFlush(std::vector<Card> *pCards){
+Point * SmartRater::checkFlush(std::vector<Card> *pCards){
   int suit_count[4] = {0};
   for (auto &card: *pCards){
     suit_count[card.suit]++;
@@ -178,7 +161,7 @@ Point * BruteRater::checkFlush(std::vector<Card> *pCards){
 }
 
 
-Point * BruteRater::checkFull(std::vector<Card> *pCards){
+Point * SmartRater::checkFull(std::vector<Card> *pCards){
   Point * Tris = checkTris(pCards);
   if (Tris == nullptr){
     return nullptr;
@@ -196,7 +179,7 @@ Point * BruteRater::checkFull(std::vector<Card> *pCards){
 }
 
 
-Point * BruteRater::checkPoker(std::vector<Card> *pCards){
+Point * SmartRater::checkPoker(std::vector<Card> *pCards){
   bool poker = false;
   Card maxCard = Card(2, 0);
   for (int i = 0; i < pCards->size() - 1; i++){
@@ -218,7 +201,7 @@ Point * BruteRater::checkPoker(std::vector<Card> *pCards){
 }
 
 
-Point * BruteRater::checkStraightFlush(std::vector<Card> *pCards){
+Point * SmartRater::checkStraightFlush(std::vector<Card> *pCards){
   Point * Straight;
   int suit_count[4] = {0};
   for (auto &card: *pCards){
@@ -243,7 +226,7 @@ Point * BruteRater::checkStraightFlush(std::vector<Card> *pCards){
 }
 
 
-Point * BruteRater::checkRoyalFlush(std::vector<Card> *pCards){
+Point * SmartRater::checkRoyalFlush(std::vector<Card> *pCards){
   Point * Straight;
   int suit_count[4] = {0};
   for (auto &card: *pCards){
@@ -265,49 +248,4 @@ Point * BruteRater::checkRoyalFlush(std::vector<Card> *pCards){
     return nullptr;
   }
   return new Point("ROYAL FLUSH", Straight->kicker, 9);
-}
-
-std::vector<Hand *> BruteRater::generateHands(Deck *pDeck, int nOpponents){
-  int n = pDeck->deckCards.size();
-  int k = nOpponents*2;
-  std::vector<bool> selector_outer(n);
-  std::vector<bool> selector_inner(k);
-  std::vector<Hand *> hands;
-  std::vector<int> combinations_temp(k);
-  std::fill(selector_outer.begin(), selector_outer.begin() + k, true);
-  std::fill(selector_inner.begin(), selector_inner.begin() + 2, true);
-  int combination = 0;
-  do{
-    combinations_temp.clear();
-    int group_count = 0;
-    for (int i = 0; i < n; i++){
-      if (selector_outer[i]){
-        combinations_temp.push_back(i);
-        group_count++;
-        if (group_count == k){
-          break;
-        }
-      }
-    }
-    do{
-      combination++;
-      Card * pCards[2] = {nullptr, nullptr};
-      int cards = 0;
-      for (int j = 0; j < k; j++){
-        if (selector_inner[j]){
-          pCards[cards] = &(pDeck->deckCards[combinations_temp[j]]);
-          cards++;
-          if (cards==2){
-            break;
-          }
-        }
-      }
-      hands.push_back(
-        new Hand(*pCards[0], *pCards[1])
-      );
-    }
-    while (std::prev_permutation(selector_inner.begin(), selector_inner.end()));
-  }
-  while (std::prev_permutation(selector_outer.begin(), selector_outer.end()));
-  return hands;
 }
