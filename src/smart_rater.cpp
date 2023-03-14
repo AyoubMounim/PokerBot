@@ -8,6 +8,53 @@ float SmartRater::rateHand(Hand *pHand, Deck *pDeck, Table *pTable, int n_oppone
 }
 
 
+int SmartRater::valueOnTable(int value, Table *pTable){
+  int count_value = 0;
+  for (auto &card: pTable->tableCards){
+    if (card.value == value){
+      count_value++;
+    }
+  }
+  return count_value;
+}
+
+
+int SmartRater::valueOnHand(int value, Hand *pHand){
+  int count_value = 0;
+  if (pHand->firstCard.value == value){
+    count_value++;
+  }
+  if (pHand->secondCard.value == value){
+    count_value++;
+  }
+  return count_value;
+}
+
+
+float SmartRater::noPair(int value, Hand *pHand, Table *pTable, int n_opponents){
+  int value_in_deck = 4 - valueOnHand(value, pHand);
+  float p = 1;
+  switch (valueOnTable(value, pTable)){
+    case 0:
+      for (int i = 0; i < 2*n_opponents; i++){
+        p *= (50.0 - i - value_in_deck)/(50.0 - i);
+      }
+      p *= (1 + 2*n_opponents*value_in_deck/(51.0 - 2*n_opponents));
+      break;
+    case 1:
+      float p = 1;
+      for (int i = 0; i < 2*n_opponents; i++){
+        p *= (50.0 - i - value_in_deck)/(50.0 - i);
+      }
+      break;
+    default:
+      p = -1;
+      break;
+  }
+  return p;
+}
+
+
 Point SmartRater::nameHand(Hand *pHand, Table *pTable){
   std::vector<Card> cards;
   Point *pPoint;
@@ -17,6 +64,45 @@ Point SmartRater::nameHand(Hand *pHand, Table *pTable){
     cards.push_back(card);
   }
   sort(cards.begin(), cards.end(), std::greater<Card>());
+  pPoint = checkRoyalFlush(&cards);
+  if (pPoint != nullptr){
+    return *pPoint;
+  }
+  pPoint = checkStraightFlush(&cards);
+  if (pPoint != nullptr){
+    return *pPoint;
+  }
+  pPoint = checkPoker(&cards);
+  if (pPoint != nullptr){
+    return *pPoint;
+  }
+  pPoint = checkFull(&cards);
+  if (pPoint != nullptr){
+    return *pPoint;
+  }
+  pPoint = checkFlush(&cards);
+  if (pPoint != nullptr){
+    return *pPoint;
+  }
+  pPoint = checkStraight(&cards);
+  if (pPoint != nullptr){
+    return *pPoint;
+  }
+  pPoint = checkTris(&cards);
+  if (pPoint != nullptr){
+    return *pPoint;
+  }
+  pPoint = checkPairs(&cards);
+  if (pPoint != nullptr){
+    return *pPoint;
+  }
+  return Point("HIGH CARD", cards[0], 0);
+}
+
+
+Point SmartRater::nameHand(std::vector<Card> cards){
+  sort(cards.begin(), cards.end(), std::greater<Card>());
+  Point *pPoint;
   pPoint = checkRoyalFlush(&cards);
   if (pPoint != nullptr){
     return *pPoint;
