@@ -3,7 +3,13 @@
 #include <algorithm>
 
 
-float BruteRater::rateHand(Hand *pHand, Deck *pDeck, Table *pTable, int n_opponents){
+float BruteRater::rateHand(
+  Hand *pHand,
+  Deck *pDeck,
+  Table *pTable,
+  Deck *pTableDeck,
+  int n_opponents
+){
   std::vector<Hand *> opponentsHand = generateHands(pDeck, n_opponents);
   Point playerPoint = nameHand(pHand, pTable);
   Point opponentPoint;

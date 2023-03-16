@@ -9,7 +9,13 @@
 
 class SmartRater: public Rater{
   public:
-    float rateHand(Hand *pHand, Deck *pDeck, Table *pTable, int n_opponents);
+    float rateHand(
+      Hand *pHand,
+      Deck *pDeck,
+      Table *pTable,
+      Deck *pTableDeck,
+      int n_opponents
+    );
     Point nameHand(Hand *pHand, Table *pTable);
 
     Point nameHand(std::vector<Card>);

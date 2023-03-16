@@ -9,8 +9,9 @@ class Rater{
   public:
     virtual float rateHand(
       Hand *pHand,
-      Deck *pDeck,
+      Deck *pPlayerDeck,
       Table *pTable,
+      Deck pTableDeck,
       int n_opponents
     ) = 0;
     virtual Point nameHand(Hand *pHand, Table *pTable) = 0;

@@ -3,7 +3,13 @@
 #include <algorithm>
 
 
-float SmartRater::rateHand(Hand *pHand, Deck *pDeck, Table *pTable, int n_opponents){
+float SmartRater::rateHand(
+  Hand *pHand,
+  Deck *pDeck,
+  Table *pTable,
+  Deck *pTableDeck,
+  int n_opponents
+){
   return -1;
 }
 
