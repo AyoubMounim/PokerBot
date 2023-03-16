@@ -8,6 +8,7 @@
 #include <string>
 #include "brute_rater.hpp"
 #include "smart_rater.hpp"
+#include "effective_rater.hpp"
 
 
 Presenter::Presenter(){
@@ -16,7 +17,7 @@ Presenter::Presenter(){
 
 
 bool Presenter::init(){
-  mModel = new Model(new BruteRater());
+  mModel = new Model(new EffectiveRater());
   mViewer = new ConsoleViewer();
   mInputReader = new ConsoleReader();
   changeState(new MenuState(this));

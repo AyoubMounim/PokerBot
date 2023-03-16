@@ -1,17 +1,16 @@
 
-#ifndef BRUTE_RATER
-#define BRUTE_RATER
+#ifndef EFFECTIVE_RATER
+#define EFFECTIVE_RATER
 
 #include "rater.hpp"
 #include "card_object.hpp"
-#include <vector>
 
 
-class BruteRater: public Rater{
+class EffectiveRater: public Rater{
   public:
     float rateHand(
       Hand *pHand,
-      Deck *pDeck,
+      Deck *pPlayerDeck,
       Table *pTable,
       Deck *pTableDeck,
       int n_opponents

@@ -37,6 +37,7 @@ class Model{
         &mPlayerHand,
         &mPlayerDeck,
         &mTable,
+        &mTableDeck,
         n_opponents
       );
     }
