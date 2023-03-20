@@ -28,7 +28,7 @@ void TurnInputState::onExit(){
 void TurnInputState::update(){
   setTurn();
   GameState::nameHand();
-  GameState::rateHandTable();
+  GameState::rateHand(mStateId);
   return;
 }
 

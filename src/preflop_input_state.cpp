@@ -32,7 +32,7 @@ void PreflopInputState::update(){
   setHand();
   mPresenter->clearTable();
   GameState::nameHand();
-  GameState::rateHandTable();
+  GameState::rateHand(mStateId);
   return;
 }
 

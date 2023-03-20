@@ -7,7 +7,20 @@
 
 class Rater{
   public:
-    virtual float rateHand(
+    virtual float rateHandRiver(
+      Hand *pHand,
+      Deck *pPlayerDeck,
+      Table *pTable,
+      int n_opponents
+    ) = 0;
+    virtual float rateHandTurn(
+      Hand *pHand,
+      Deck *pPlayerDeck,
+      Table *pTable,
+      Deck *pTableDeck,
+      int n_opponents
+    ) = 0;
+    virtual float rateHandFlop(
       Hand *pHand,
       Deck *pPlayerDeck,
       Table *pTable,

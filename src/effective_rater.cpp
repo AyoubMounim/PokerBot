@@ -4,7 +4,25 @@
 #include <cmath>
 
 
-float EffectiveRater::rateHand(
+float EffectiveRater::rateHandRiver(
+  Hand *pHand,
+  Deck *pPlayerDeck,
+  Table *pTable,
+  int n_opponents
+){
+  std::vector<Hand *> opponentHands = generateHands(pPlayerDeck, 1);
+  Point playerPoint = nameHand(pHand, pTable);
+  int results[3];
+  Result result;
+  for (auto &hand: opponentHands){
+    result = clashHands(&playerPoint, hand, pTable);
+    results[result]++;
+  }
+  return std::pow((results[WIN] + results[DRAW]/2.0)/float(results[WIN] + results[DRAW] + results[LOOSE]), n_opponents);
+}
+
+
+float EffectiveRater::rateHandTurn(
   Hand *pHand,
   Deck *pPlayerDeck,
   Table *pTable,
@@ -13,26 +31,126 @@ float EffectiveRater::rateHand(
 ){
   std::vector<Hand *> opponentHands = generateHands(pPlayerDeck, 1);
   Point playerPoint = nameHand(pHand, pTable);
-  Point opponentPoint;
-  int win = 0;
-  int draw = 0;
-  int n_hands = 0;
+  float results[3];
+  float possible_results[3][3];
+  Result result;
+  Result possibleResult;
   for (auto &hand: opponentHands){
-    opponentPoint = nameHand(hand, pTable);
-    if (playerPoint.grade > opponentPoint.grade){
-      win++;
+    result = clashHands(&playerPoint, hand, pTable);
+    results[result]++;
+    Table possibleTable = Table(*pTable);
+    for (auto &card: pTableDeck->deckCards){
+      possibleTable.tableCards.push_back(card);
+      possibleResult = clashHands(pHand, hand, &possibleTable);
+      possible_results[result][possibleResult]++;
+      possibleTable.tableCards.pop_back();
     }
-    else if (opponentPoint.grade == playerPoint.grade){
-      if (playerPoint.kicker.value > opponentPoint.kicker.value){
-        win++;
-      }
-      else if (playerPoint.kicker.value == opponentPoint.kicker.value){
-        draw++;
-      }
-    }
-    n_hands++;
   }
-  return std::pow((win + draw/2.0)/float(n_hands), n_opponents);
+  float pPot = positivePot(results, possible_results);
+  float nPot = negativePot(results, possible_results);
+  return effectiveStrength(results, pPot, nPot, n_opponents);
+}
+
+
+float EffectiveRater::rateHandFlop(
+  Hand *pHand,
+  Deck *pPlayerDeck,
+  Table *pTable,
+  Deck *pTableDeck,
+  int n_opponents
+){
+  std::vector<Hand *> opponentHands = generateHands(pPlayerDeck, 1);
+  Point playerPoint = nameHand(pHand, pTable);
+  float results[3];
+  float possible_results[3][3];
+  Result result;
+  Result possibleResult;
+  for (auto &hand: opponentHands){
+    result = clashHands(&playerPoint, hand, pTable);
+    results[result]++;
+    Table possibleTable = Table(*pTable);
+    for (int i = 0; i < pTableDeck->deckCards.size() - 1; i++){
+      possibleTable.tableCards.push_back(pTableDeck->deckCards[i]);
+      for (int j = i + 1; j < pTableDeck->deckCards.size(); j++){
+        possibleTable.tableCards.push_back(pTableDeck->deckCards[j]);
+        possibleResult = clashHands(pHand, hand, &possibleTable);
+        possible_results[result][possibleResult]++;
+        possibleTable.tableCards.pop_back();
+      }
+      possibleTable.tableCards.pop_back();
+    }
+  }
+  float pPot = positivePot(results, possible_results);
+  float nPot = negativePot(results, possible_results);
+  return effectiveStrength(results, pPot, nPot, n_opponents);
+}
+
+
+float EffectiveRater::negativePot(float results[3], float possible_results[3][3]){
+  return (possible_results[WIN][LOOSE] + possible_results[DRAW][LOOSE]/2 + possible_results[WIN][DRAW]/2)
+        /(results[WIN] + results[DRAW]/2);
+}
+
+
+float EffectiveRater::positivePot(float results[3], float possible_results[3][3]){
+  return (possible_results[LOOSE][WIN] + possible_results[LOOSE][DRAW]/2 + possible_results[DRAW][WIN]/2)
+        /(results[LOOSE] + results[DRAW]/2);
+}
+
+
+float EffectiveRater::effectiveStrength(
+  float results[3],
+  float pPot,
+  float nPot,
+  int n_opponents
+){
+  float hand_strength = (results[WIN] + results[DRAW]/2)
+                        /(results[WIN] + results[DRAW] + results[LOOSE]);
+  float effective_strength = hand_strength*(1 - nPot) + (1 - hand_strength)*pPot;
+  return std::pow(effective_strength, n_opponents);
+}
+
+
+Result EffectiveRater::clashHands(
+  Hand *pPlayerHand,
+  Hand *pOpponentHand,
+  Table *pTable
+){
+  Point playerPoint = nameHand(pPlayerHand, pTable);
+  Point opponentPoint = nameHand(pOpponentHand, pTable);
+  if (playerPoint.grade > opponentPoint.grade){
+    return WIN;
+  }
+  if (opponentPoint.grade == playerPoint.grade){
+    if (playerPoint.kicker.value > opponentPoint.kicker.value){
+      return WIN;
+    }
+    else if (playerPoint.kicker.value == opponentPoint.kicker.value){
+      return DRAW;
+    }
+  }
+  return LOOSE;
+}
+
+
+Result EffectiveRater::clashHands(
+  Point *pPlayerPoint,
+  Hand *pOpponentHand,
+  Table *pTable
+){
+  Point opponentPoint = nameHand(pOpponentHand, pTable);
+  if (pPlayerPoint->grade > opponentPoint.grade){
+    return WIN;
+  }
+  if (opponentPoint.grade == pPlayerPoint->grade){
+    if (pPlayerPoint->kicker.value > opponentPoint.kicker.value){
+      return WIN;
+    }
+    else if (pPlayerPoint->kicker.value == opponentPoint.kicker.value){
+      return DRAW;
+    }
+  }
+  return LOOSE;
 }
 
 

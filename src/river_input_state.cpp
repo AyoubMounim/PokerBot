@@ -28,7 +28,7 @@ void RiverInputState::onExit(){
 void RiverInputState::update(){
   setRiver();
   GameState::nameHand();
-  GameState::rateHandTable();
+  GameState::rateHand(mStateId);
   return;
 }
 

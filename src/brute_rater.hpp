@@ -9,7 +9,20 @@
 
 class BruteRater: public Rater{
   public:
-    float rateHand(
+    float rateHandRiver(
+      Hand *pHand,
+      Deck *pDeck,
+      Table *pTable,
+      int n_opponents
+    );
+    float rateHandTurn(
+      Hand *pHand,
+      Deck *pDeck,
+      Table *pTable,
+      Deck *pTableDeck,
+      int n_opponents
+    );
+    float rateHandFlop(
       Hand *pHand,
       Deck *pDeck,
       Table *pTable,

@@ -29,7 +29,7 @@ void FlopInputState::update(){
   resetTableDeck();
   setTable();
   GameState::nameHand();
-  GameState::rateHandTable();
+  GameState::rateHand(mStateId);
   return;
 }
 

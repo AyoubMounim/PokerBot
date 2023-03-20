@@ -42,7 +42,7 @@ class GameState: public State{
     Point * getPoint(){return mPresenter->getPoint();}
     float getRating(){return mPresenter->getRating();}
 
-    void rateHandTable(){mPresenter->rateHandTable();}
+    void rateHand(std::string stateId){mPresenter->rateHand(stateId);}
     void nameHand(){mPresenter->nameHand();}
 
   protected:

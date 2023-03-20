@@ -102,3 +102,33 @@ void Model::removeCard(Card *pCard, Deck *pDeck){
   }
   throw std::logic_error("Card to remove not found.");
 }
+
+
+void Model::rateHand(std::string stateId){
+  if (stateId == "RIVER"){
+    rating = mRater->rateHandRiver(
+      &mPlayerHand,
+      &mPlayerDeck,
+      &mTable,
+      n_opponents
+    );
+  }
+  else if (stateId == "TURN"){
+    rating = mRater->rateHandTurn(
+      &mPlayerHand,
+      &mPlayerDeck,
+      &mTable,
+      &mTableDeck,
+      n_opponents
+    );
+  }
+  else if (stateId == "FLOP"){
+    rating = mRater->rateHandFlop(
+      &mPlayerHand,
+      &mPlayerDeck,
+      &mTable,
+      &mTableDeck,
+      n_opponents
+    );
+  }
+}

@@ -6,9 +6,29 @@
 #include "card_object.hpp"
 
 
+enum Result{
+  LOOSE,
+  DRAW,
+  WIN
+};
+
+
 class EffectiveRater: public Rater{
   public:
-    float rateHand(
+    float rateHandRiver(
+      Hand *pHand,
+      Deck *pPlayerDeck,
+      Table *pTable,
+      int n_opponents
+    );
+    float rateHandTurn(
+      Hand *pHand,
+      Deck *pPlayerDeck,
+      Table *pTable,
+      Deck *pTableDeck,
+      int n_opponents
+    );
+    float rateHandFlop(
       Hand *pHand,
       Deck *pPlayerDeck,
       Table *pTable,
@@ -19,6 +39,24 @@ class EffectiveRater: public Rater{
 
   private:
     std::vector<Hand *> generateHands(Deck *pDeck, int nOpponents);
+    Result clashHands(
+      Hand *pPlayerHand,
+      Hand *pOpponentHand,
+      Table *pTable
+    );
+    Result clashHands(
+      Point *pPlayerPoint,
+      Hand *pOpponentHand,
+      Table *pTable
+    );
+    float negativePot(float results[3], float possible_results[3][3]);
+    float positivePot(float results[3], float possible_results[3][3]);
+    float effectiveStrength(
+      float results[3],
+      float pPot,
+      float nPot,
+      int n_opponents
+    );
 
     Point * checkPairs(std::vector<Card> *pCards);
     Point * checkTris(std::vector<Card> *pCards);
@@ -29,5 +67,7 @@ class EffectiveRater: public Rater{
     Point * checkStraightFlush(std::vector<Card> *pCards);
     Point * checkRoyalFlush(std::vector<Card> *pCards);
 };
+
+
 
 #endif

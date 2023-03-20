@@ -32,15 +32,7 @@ class Model{
     void resetPlayerDeck(){mPlayerDeck = initializeDeck();}
     void resetTableDeck(){mTableDeck = initializeDeck();}
 
-    void rateHandTable(){
-      rating = mRater->rateHand(
-        &mPlayerHand,
-        &mPlayerDeck,
-        &mTable,
-        &mTableDeck,
-        n_opponents
-      );
-    }
+    void rateHand(std::string stateId);
     float getRating(){return rating;}
 
     void nameHand(){mPoint = mRater->nameHand(&mPlayerHand, &mTable);}

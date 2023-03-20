@@ -3,11 +3,10 @@
 #include <algorithm>
 
 
-float BruteRater::rateHand(
+float BruteRater::rateHandRiver(
   Hand *pHand,
   Deck *pDeck,
   Table *pTable,
-  Deck *pTableDeck,
   int n_opponents
 ){
   std::vector<Hand *> opponentsHand = generateHands(pDeck, n_opponents);
@@ -28,6 +27,28 @@ float BruteRater::rateHand(
     n_hands++;
   }
   return win/float(n_hands);
+}
+
+
+float BruteRater::rateHandTurn(
+  Hand *pHand,
+  Deck *pDeck,
+  Table *pTable,
+  Deck *pTableDeck,
+  int n_opponents
+){
+  return -1;
+}
+
+
+float BruteRater::rateHandFlop(
+  Hand *pHand,
+  Deck *pDeck,
+  Table *pTable,
+  Deck *pTableDeck,
+  int n_opponents
+){
+  return -1;
 }
 
 
