@@ -35,6 +35,11 @@ float SmartRater::rateHandFlop(
 }
 
 
+float SmartRater::rateHandPreFlop(Hand *pHand, Deck *pPlayerDeck, int n_opponents){
+  return -1;
+}
+
+
 int SmartRater::valueOnTable(int value, Table *pTable){
   int count_value = 0;
   for (auto &card: pTable->tableCards){

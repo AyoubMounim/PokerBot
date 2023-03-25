@@ -51,6 +51,9 @@ float BruteRater::rateHandFlop(
   return -1;
 }
 
+float BruteRater::rateHandPreFlop(Hand *pHand, Deck *pPlayerDeck, int n_opponents){
+  return -1;
+}
 
 Point BruteRater::nameHand(Hand *pHand, Table *pTable){
   std::vector<Card> cards;

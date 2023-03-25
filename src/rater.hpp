@@ -27,6 +27,11 @@ class Rater{
       Deck *pTableDeck,
       int n_opponents
     ) = 0;
+    virtual float rateHandPreFlop(
+      Hand *pHand,
+      Deck *pPlayerDeck,
+      int n_opponents
+    ) = 0;
     virtual Point nameHand(Hand *pHand, Table *pTable) = 0;
 
   protected:

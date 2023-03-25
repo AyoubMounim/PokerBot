@@ -35,6 +35,11 @@ class EffectiveRater: public Rater{
       Deck *pTableDeck,
       int n_opponents
     );
+    float rateHandPreFlop(
+      Hand *pHand,
+      Deck *pPlayerDeck,
+      int n_opponents
+    );
     Point nameHand(Hand *pHand, Table *pTable);
 
   private:
@@ -67,7 +72,5 @@ class EffectiveRater: public Rater{
     Point * checkStraightFlush(std::vector<Card> *pCards);
     Point * checkRoyalFlush(std::vector<Card> *pCards);
 };
-
-
 
 #endif

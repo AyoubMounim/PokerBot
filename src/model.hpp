@@ -32,7 +32,10 @@ class Model{
     void resetPlayerDeck(){mPlayerDeck = initializeDeck();}
     void resetTableDeck(){mTableDeck = initializeDeck();}
 
-    void rateHand(std::string stateId);
+    void rateRiver();
+    void rateTurn();
+    void rateFlop();
+    void ratePreFlop();
     float getRating(){return rating;}
 
     void nameHand(){mPoint = mRater->nameHand(&mPlayerHand, &mTable);}

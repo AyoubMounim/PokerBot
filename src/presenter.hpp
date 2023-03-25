@@ -32,7 +32,7 @@ class Presenter{
     void resetTableDeck(){mModel->resetTableDeck();}
     void clearTable(){mModel->clearTable();}
 
-    void rateHand(std::string stateId){mModel->rateHand(stateId);}
+    void rateHand(std::string stateId);
     float getRating(){return mModel->getRating();}
 
     void nameHand(){mModel->nameHand();}

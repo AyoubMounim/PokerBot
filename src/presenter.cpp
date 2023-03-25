@@ -9,6 +9,7 @@
 #include "brute_rater.hpp"
 #include "smart_rater.hpp"
 #include "effective_rater.hpp"
+#include <stdexcept>
 
 
 Presenter::Presenter(){
@@ -55,5 +56,25 @@ void Presenter::changeState(State *pState){
 void Presenter::setNumOpponents(){
   int n_opponents = mInputReader->readNumOpponents();
   mModel->setNumOpponents(n_opponents);
+  return;
+}
+
+
+void Presenter::rateHand(std::string stateId){
+  if (stateId == "PREFLOP"){
+    mModel->ratePreFlop();
+  }
+  else if (stateId == "FLOP"){
+    mModel->rateFlop();
+  }
+  else if (stateId == "TURN"){
+    mModel->rateFlop();
+  }
+  else if (stateId == "RIVER"){
+    mModel->rateRiver();
+  }
+  else{
+    throw std::invalid_argument("Invalid game phase");
+  }
   return;
 }

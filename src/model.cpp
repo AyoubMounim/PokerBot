@@ -104,31 +104,46 @@ void Model::removeCard(Card *pCard, Deck *pDeck){
 }
 
 
-void Model::rateHand(std::string stateId){
-  if (stateId == "RIVER"){
-    rating = mRater->rateHandRiver(
-      &mPlayerHand,
-      &mPlayerDeck,
-      &mTable,
-      n_opponents
-    );
-  }
-  else if (stateId == "TURN"){
-    rating = mRater->rateHandTurn(
-      &mPlayerHand,
-      &mPlayerDeck,
-      &mTable,
-      &mTableDeck,
-      n_opponents
-    );
-  }
-  else if (stateId == "FLOP"){
-    rating = mRater->rateHandFlop(
-      &mPlayerHand,
-      &mPlayerDeck,
-      &mTable,
-      &mTableDeck,
-      n_opponents
-    );
-  }
+void Model::rateRiver(){
+  rating = mRater->rateHandRiver(
+    &mPlayerHand,
+    &mPlayerDeck,
+    &mTable,
+    n_opponents
+  );
+  return;
+}
+
+
+void Model::rateTurn(){
+  rating = mRater->rateHandTurn(
+    &mPlayerHand,
+    &mPlayerDeck,
+    &mTable,
+    &mTableDeck,
+    n_opponents
+  );
+  return;
+}
+
+
+void Model::rateFlop(){
+  rating = mRater->rateHandFlop(
+    &mPlayerHand,
+    &mPlayerDeck,
+    &mTable,
+    &mTableDeck,
+    n_opponents
+  );
+  return;
+}
+
+
+void Model::ratePreFlop(){
+  rating = mRater->rateHandPreFlop(
+    &mPlayerHand,
+    &mPlayerDeck,
+    n_opponents
+  );
+  return;
 }

@@ -2,6 +2,7 @@
 #include "effective_rater.hpp"
 #include <algorithm>
 #include <cmath>
+#include <iostream>
 
 
 float EffectiveRater::rateHandRiver(
@@ -12,13 +13,13 @@ float EffectiveRater::rateHandRiver(
 ){
   std::vector<Hand *> opponentHands = generateHands(pPlayerDeck, 1);
   Point playerPoint = nameHand(pHand, pTable);
-  int results[3];
+  float results[3] = {0};
   Result result;
   for (auto &hand: opponentHands){
     result = clashHands(&playerPoint, hand, pTable);
     results[result]++;
   }
-  return std::pow((results[WIN] + results[DRAW]/2.0)/float(results[WIN] + results[DRAW] + results[LOOSE]), n_opponents);
+  return effectiveStrength(results, 0, 0, n_opponents);
 }
 
 
@@ -31,8 +32,8 @@ float EffectiveRater::rateHandTurn(
 ){
   std::vector<Hand *> opponentHands = generateHands(pPlayerDeck, 1);
   Point playerPoint = nameHand(pHand, pTable);
-  float results[3];
-  float possible_results[3][3];
+  float results[3] = {0};
+  float possible_results[3][3] = {0};
   Result result;
   Result possibleResult;
   for (auto &hand: opponentHands){
@@ -61,8 +62,8 @@ float EffectiveRater::rateHandFlop(
 ){
   std::vector<Hand *> opponentHands = generateHands(pPlayerDeck, 1);
   Point playerPoint = nameHand(pHand, pTable);
-  float results[3];
-  float possible_results[3][3];
+  float results[3] = {0};
+  float possible_results[3][3] = {0};
   Result result;
   Result possibleResult;
   for (auto &hand: opponentHands){
@@ -86,15 +87,29 @@ float EffectiveRater::rateHandFlop(
 }
 
 
+float EffectiveRater::rateHandPreFlop(Hand *pHand, Deck *pPlayerDeck, int n_opponents){
+  std::vector<Hand *> opponentHands = generateHands(pPlayerDeck, 1);
+  Table *pTable = new Table();
+  Point playerPoint = nameHand(pHand, pTable);
+  float results[3] = {0};
+  Result result;
+  for (auto &hand: opponentHands){
+    result = clashHands(&playerPoint, hand, pTable);
+    results[result]++;
+  }
+  return effectiveStrength(results, 0, 0, n_opponents);
+}
+
+
 float EffectiveRater::negativePot(float results[3], float possible_results[3][3]){
   return (possible_results[WIN][LOOSE] + possible_results[DRAW][LOOSE]/2 + possible_results[WIN][DRAW]/2)
-        /(results[WIN] + results[DRAW]/2);
+        /(possible_results[WIN][LOOSE] + possible_results[WIN][WIN] + possible_results[WIN][DRAW]/2 + possible_results[DRAW][LOOSE]/2 + possible_results[DRAW][WIN]/2);
 }
 
 
 float EffectiveRater::positivePot(float results[3], float possible_results[3][3]){
   return (possible_results[LOOSE][WIN] + possible_results[LOOSE][DRAW]/2 + possible_results[DRAW][WIN]/2)
-        /(results[LOOSE] + results[DRAW]/2);
+        /(possible_results[LOOSE][WIN] + possible_results[LOOSE][DRAW]/2 + possible_results[LOOSE][LOOSE] + possible_results[DRAW][WIN]/2 + possible_results[DRAW][LOOSE]/2);
 }
 
 
@@ -256,7 +271,7 @@ Point * EffectiveRater::checkStraight(std::vector<Card> *pCards){
     return nullptr;
   }
   Card maxCard = Card(2, 0);
-  int continuity;
+  int continuity = 0;
   for (int i = 0; i < pCards->size()-1; i++){
     if ((*pCards)[i].value - (*pCards)[i+1].value == 1){
       continuity++;
@@ -348,7 +363,7 @@ Point * EffectiveRater::checkPoker(std::vector<Card> *pCards){
 
 
 Point * EffectiveRater::checkStraightFlush(std::vector<Card> *pCards){
-  Point * Straight;
+  Point *Straight;
   int suit_count[4] = {0};
   for (auto &card: *pCards){
     suit_count[card.suit]++;

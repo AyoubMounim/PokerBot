@@ -29,6 +29,11 @@ class BruteRater: public Rater{
       Deck *pTableDeck,
       int n_opponents
     );
+    float rateHandPreFlop(
+      Hand *pHand,
+      Deck *pPlayerDeck,
+      int n_opponents
+    );
     Point nameHand(Hand *pHand, Table *pTable);
 
   private:
