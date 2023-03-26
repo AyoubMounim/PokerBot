@@ -26,6 +26,7 @@ void TurnInputState::onExit(){
 
 
 void TurnInputState::update(){
+  mPresenter->setNumOpponents();
   setTurn();
   GameState::nameHand();
   GameState::rateHand(mStateId);

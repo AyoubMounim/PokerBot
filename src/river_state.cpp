@@ -24,6 +24,7 @@ void RiverState::onExit(){
 
 
 void RiverState::update(){
+  mPresenter->setNumOpponents();
   drawRiver();
   return;
 }

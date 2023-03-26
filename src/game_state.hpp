@@ -13,7 +13,8 @@ class GameState: public State{
     virtual void handleInput(){
       std::string input;
       std::cout << "\nPress 'n' to go to next phase." << std::endl;
-      std::cout << "Press 'q' to go to main menu." << std::endl;
+      std::cout << "Press 'f' to fold and go to pre-flop phase." << std::endl;
+      std::cout << "\nPress 'q' to go to main menu." << std::endl;
       std::cin >> input;
 
       if (input == "n"){
@@ -24,6 +25,9 @@ class GameState: public State{
         else{
           mPresenter->changeState(mNextState);
         }
+      }
+      else if (input == "f"){
+        mPresenter->goToPreflop();
       }
       else if (input == "q"){
         mPresenter->changeState(new MenuState(mPresenter));

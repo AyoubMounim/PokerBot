@@ -27,6 +27,7 @@ void FlopInputState::onExit(){
 
 void FlopInputState::update(){
   resetTableDeck();
+  mPresenter->setNumOpponents();
   setTable();
   GameState::nameHand();
   GameState::rateHand(mStateId);

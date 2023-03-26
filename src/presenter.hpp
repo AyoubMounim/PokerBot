@@ -31,6 +31,7 @@ class Presenter{
     void resetPlayerDeck(){mModel->resetPlayerDeck();}
     void resetTableDeck(){mModel->resetTableDeck();}
     void clearTable(){mModel->clearTable();}
+    void goToPreflop();
 
     void rateHand(std::string stateId);
     float getRating(){return mModel->getRating();}

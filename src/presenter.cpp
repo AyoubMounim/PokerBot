@@ -10,6 +10,7 @@
 #include "smart_rater.hpp"
 #include "effective_rater.hpp"
 #include <stdexcept>
+#include "preflop_input_state.hpp"
 
 
 Presenter::Presenter(){
@@ -78,3 +79,10 @@ void Presenter::rateHand(std::string stateId){
   }
   return;
 }
+
+
+void Presenter::goToPreflop(){
+  changeState(new PreflopInputState(this));
+  return;
+}
+
