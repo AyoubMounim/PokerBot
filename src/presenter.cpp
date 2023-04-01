@@ -9,6 +9,7 @@
 #include "brute_rater.hpp"
 #include "smart_rater.hpp"
 #include "effective_rater.hpp"
+#include "range_rater.hpp"
 #include <stdexcept>
 #include "preflop_input_state.hpp"
 
@@ -19,7 +20,7 @@ Presenter::Presenter(){
 
 
 bool Presenter::init(){
-  mModel = new Model(new EffectiveRater());
+  mModel = new Model(new RangeRater());
   mViewer = new ConsoleViewer();
   mInputReader = new ConsoleReader();
   changeState(new MenuState(this));

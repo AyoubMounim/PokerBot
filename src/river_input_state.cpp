@@ -26,6 +26,7 @@ void RiverInputState::onExit(){
 
 
 void RiverInputState::update(){
+  mPresenter->setNumOpponents();
   setRiver();
   GameState::nameHand();
   GameState::rateHand(mStateId);
