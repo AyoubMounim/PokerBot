@@ -13,14 +13,14 @@ RiverInputState::RiverInputState(Presenter *pPresenter)
 
 
 void RiverInputState::onEnter(){
-  State::onEnter();
+  // State::onEnter();
   GameState::onEnter();
   return;
 }
 
 
 void RiverInputState::onExit(){
-  State::onExit();
+  // State::onExit();
   return;
 }
 

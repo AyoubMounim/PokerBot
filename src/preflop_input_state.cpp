@@ -14,14 +14,14 @@ PreflopInputState::PreflopInputState(Presenter *pPresenter)
 
 
 void PreflopInputState::onEnter(){
-  State::onEnter();
+  // State::onEnter();
   GameState::onEnter();
   return;
 }
 
 
 void PreflopInputState::onExit(){
-  State::onExit();
+  // State::onExit();
   return;
 }
 

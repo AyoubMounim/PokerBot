@@ -11,14 +11,14 @@ RiverState::RiverState(Presenter *pPresenter)
 
 
 void RiverState::onEnter(){
-  State::onEnter();
+  // State::onEnter();
   GameState::onEnter();
   return;
 }
 
 
 void RiverState::onExit(){
-  State::onExit();
+  // State::onExit();
   return;
 }
 

@@ -13,14 +13,14 @@ TurnInputState::TurnInputState(Presenter *pPresenter)
 
 
 void TurnInputState::onEnter(){
-  State::onEnter();
+  // State::onEnter();
   GameState::onEnter();
   return;
 }
 
 
 void TurnInputState::onExit(){
-  State::onExit();
+  // State::onExit();
   return;
 }
 

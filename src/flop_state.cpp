@@ -12,14 +12,14 @@ FlopState::FlopState(Presenter *pPresenter)
 
 
 void FlopState::onEnter(){
-  State::onEnter();
+  // State::onEnter();
   GameState::onEnter();
   return;
 }
 
 
 void FlopState::onExit(){
-  State::onExit();
+  // State::onExit();
   return;
 }
 

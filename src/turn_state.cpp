@@ -12,15 +12,14 @@ TurnState::TurnState(Presenter *pPresenter)
 
 
 void TurnState::onEnter(){
-  State::onEnter();
+  // State::onEnter();
   GameState::onEnter();
   return;
 }
 
 
-
 void TurnState::onExit(){
-  State::onExit();
+  // State::onExit();
   return;
 }
 
