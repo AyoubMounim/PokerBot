@@ -20,7 +20,7 @@ Presenter::Presenter(){
 
 
 bool Presenter::init(){
-  mModel = new Model(new RangeRater());
+  mModel = new Model(new EffectiveRater());
   mViewer = new ConsoleViewer();
   mInputReader = new ConsoleReader();
   changeState(new MenuState(this));
