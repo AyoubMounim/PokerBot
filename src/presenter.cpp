@@ -12,6 +12,7 @@
 #include "range_rater.hpp"
 #include <stdexcept>
 #include "preflop_input_state.hpp"
+#include "preflop_state.hpp"
 
 
 Presenter::Presenter(){
@@ -83,6 +84,12 @@ void Presenter::rateHand(std::string stateId){
 
 
 void Presenter::goToPreflop(){
+  changeState(new PreflopState(this));
+  return;
+}
+
+
+void Presenter::goToPreflopInput(){
   changeState(new PreflopInputState(this));
   return;
 }

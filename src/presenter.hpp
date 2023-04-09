@@ -4,10 +4,17 @@
 
 #include "model.hpp"
 #include "state.hpp"
+#include "menu_state.hpp"
 
 struct Card;
 class Viewer;
 class InputReader;
+
+
+enum GameMode{
+  play,
+  assist
+};
 
 
 class Presenter{
@@ -32,12 +39,16 @@ class Presenter{
     void resetTableDeck(){mModel->resetTableDeck();}
     void clearTable(){mModel->clearTable();}
     void goToPreflop();
+    void goToPreflopInput();
 
     void rateHand(std::string stateId);
     float getRating(){return mModel->getRating();}
 
     void nameHand(){mModel->nameHand();}
     Point * getPoint(){return mModel->getPoint();}
+
+    GameMode getGameMode(){return mGameMode;}
+
   
   private:
     Model *mModel;
@@ -45,8 +56,9 @@ class Presenter{
     State *mState;
     InputReader *mInputReader;
     bool mRunning;
+    GameMode mGameMode;
   
-  friend State;
+  friend MenuState;
 };
 
 #endif

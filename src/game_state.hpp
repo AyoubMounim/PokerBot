@@ -27,7 +27,14 @@ class GameState: public State{
         }
       }
       else if (input == "f"){
-        mPresenter->goToPreflop();
+        switch (mPresenter->getGameMode()){
+          case play:
+            mPresenter->goToPreflop();
+            break;
+          case assist:
+            mPresenter->goToPreflopInput();
+            break;
+        }
       }
       else if (input == "q"){
         mPresenter->changeState(new MenuState(mPresenter));
