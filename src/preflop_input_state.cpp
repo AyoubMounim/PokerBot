@@ -28,6 +28,7 @@ void PreflopInputState::onExit(){
 
 void PreflopInputState::update(){
   resetPlayerDeck();
+  resetTableDeck();
   mPresenter->setNumOpponents();
   setHand();
   mPresenter->clearTable();
@@ -47,6 +48,12 @@ void PreflopInputState::render(){
 
 void PreflopInputState::resetPlayerDeck(){
   mPresenter->getModel()->resetPlayerDeck();
+  return;
+}
+
+
+void PreflopInputState::resetTableDeck(){
+  mPresenter->getModel()->resetTableDeck();
   return;
 }
 

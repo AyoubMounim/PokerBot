@@ -13,6 +13,7 @@ class PreflopInputState: public GameState{
     void update();
     void render();
     void resetPlayerDeck();
+    void resetTableDeck();
     void setHand();
 };
 
