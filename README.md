@@ -24,5 +24,4 @@ choices of hand ranking and will provide more extensive and useful outputs.
 
 ## References
 
-* Computer Poker: A Review, J. Rubin and I. Watson
-
+- Computer Poker: A Review, J. Rubin and I. Watson
