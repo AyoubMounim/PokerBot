@@ -12,14 +12,14 @@ MenuState::MenuState(Presenter *pPresenter)
 
 
 void MenuState::onEnter(){
-  State::onEnter();
+  // State::onEnter();
   std::cout << "\n ======= " << mStateId << " =======" << std::endl;
   return;
 }
 
 
 void MenuState::onExit(){
-  State::onExit();
+  // State::onExit();
   return;
 }
 
