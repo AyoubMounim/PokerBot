@@ -17,7 +17,7 @@ when deciding how to play the hand.
 
 In the current version of the program, the play mode is barely functional and will
 be properly implemented in the future.  
-This current version also supports one sigle method of hand ranking, namely by 
+This current version also supports one single method of hand ranking, namely by 
 computing the *effective hand strength*, which is also the only output of the program
 when suggesting what the player should do. Successive versions will have more
 choices of hand ranking and will provide more extensive and useful outputs.
