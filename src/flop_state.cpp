@@ -27,6 +27,8 @@ void FlopState::onExit(){
 void FlopState::update(){
   mPresenter->resetTableDeck();
   drawPreflop();
+  GameState::nameHand();
+  GameState::rateHand(mStateId);
   return;
 }
 
@@ -34,6 +36,8 @@ void FlopState::update(){
 void FlopState::render(){
   mPresenter->getViewer()->renderHand(GameState::getHand());
   mPresenter->getViewer()->renderTable(GameState::getTable());
+  mPresenter->getViewer()->renderPoint(GameState::getPoint());
+  mPresenter->getViewer()->renderRating(GameState::getRating());
   return;
 }
 

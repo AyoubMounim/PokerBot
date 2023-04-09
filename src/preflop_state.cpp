@@ -26,6 +26,7 @@ void PreflopState::onExit(){
 
 void PreflopState::update(){
   mPresenter->resetPlayerDeck();
+  mPresenter->resetTableDeck();
   mPresenter->setNumOpponents();
   drawHand();
   mPresenter->clearTable();

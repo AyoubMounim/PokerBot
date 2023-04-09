@@ -1,12 +1,14 @@
 
 #include "river_state.hpp"
 #include "viewer.hpp"
+#include "preflop_state.hpp"
+#include "menu_state.hpp"
 
 
 RiverState::RiverState(Presenter *pPresenter)
 : GameState(pPresenter){
   mStateId = "RIVER";
-  mNextState = nullptr;
+  mNextState = new MenuState(pPresenter);
 }
 
 
@@ -24,8 +26,9 @@ void RiverState::onExit(){
 
 
 void RiverState::update(){
-  mPresenter->setNumOpponents();
   drawRiver();
+  GameState::nameHand();
+  GameState::rateHand(mStateId);
   return;
 }
 
@@ -33,6 +36,8 @@ void RiverState::update(){
 void RiverState::render(){
   mPresenter->getViewer()->renderHand(GameState::getHand());
   mPresenter->getViewer()->renderTable(GameState::getTable());
+  mPresenter->getViewer()->renderPoint(GameState::getPoint());
+  mPresenter->getViewer()->renderRating(GameState::getRating());
   return;
 }
 

@@ -26,6 +26,8 @@ void TurnState::onExit(){
 
 void TurnState::update(){
   drawTurn();
+  GameState::nameHand();
+  GameState::rateHand(mStateId);
   return;
 }
 
@@ -33,6 +35,8 @@ void TurnState::update(){
 void TurnState::render(){
   mPresenter->getViewer()->renderHand(GameState::getHand());
   mPresenter->getViewer()->renderTable(GameState::getTable());
+  mPresenter->getViewer()->renderPoint(GameState::getPoint());
+  mPresenter->getViewer()->renderRating(GameState::getRating());
   return;
 }
 
