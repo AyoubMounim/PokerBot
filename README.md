@@ -18,7 +18,11 @@ in playing the hand.
 In the current version of the program, the play mode is barely functional and will
 be properly implemented in the future.  
 This current version also supports one sigle method of hand ranking, namely by 
-computing the *effective hand strength*, and that is the only output of the program
-when suggesting what the player should do. The successive vertion will have more
-choices of hand ranking and will have a more extensive and useful output.
+computing the *effective hand strength*, which is also the only output of the program
+when suggesting what the player should do. Successive versions will have more
+choices of hand ranking and will provide more extensive and useful outputs.
+
+## References
+
+* Computer Poker: A Review, J. Rubin and I. Watson
 
