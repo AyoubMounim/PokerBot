@@ -3,12 +3,13 @@
 #include "viewer.hpp"
 #include "input_reader.hpp"
 #include "menu_state.hpp"
+#include "preflop_input_state.hpp"
 
 
 RiverInputState::RiverInputState(Presenter *pPresenter)
 : GameState(pPresenter){
   mStateId = "RIVER";
-  mNextState = new MenuState(pPresenter);
+  mNextState = nullptr;
 }
 
 
@@ -39,6 +40,22 @@ void RiverInputState::render(){
   mPresenter->getViewer()->renderTable(GameState::getTable());
   mPresenter->getViewer()->renderPoint(GameState::getPoint());
   mPresenter->getViewer()->renderRating(GameState::getRating());
+  return;
+}
+
+
+void RiverInputState::handleInput(){
+  std::string input;
+  std::cout << "\nPress 'n' for new game." << std::endl;
+  std::cout << "Press 'q' to go to main menu." << std::endl;
+  std::cin >> input;
+
+  if (input == "n"){
+    mPresenter->changeState(new PreflopInputState(mPresenter));
+  }
+  else if (input == "q"){
+    mPresenter->changeState(new MenuState(mPresenter));
+  }
   return;
 }
 

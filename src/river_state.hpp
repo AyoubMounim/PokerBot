@@ -12,6 +12,7 @@ class RiverState: public GameState{
     void onExit();
     void update();
     void render();
+    void handleInput();
 
     void drawRiver();
 };

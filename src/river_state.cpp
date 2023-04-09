@@ -8,7 +8,7 @@
 RiverState::RiverState(Presenter *pPresenter)
 : GameState(pPresenter){
   mStateId = "RIVER";
-  mNextState = new MenuState(pPresenter);
+  mNextState = nullptr;
 }
 
 
@@ -38,6 +38,22 @@ void RiverState::render(){
   mPresenter->getViewer()->renderTable(GameState::getTable());
   mPresenter->getViewer()->renderPoint(GameState::getPoint());
   mPresenter->getViewer()->renderRating(GameState::getRating());
+  return;
+}
+
+
+void RiverState::handleInput(){
+  std::string input;
+  std::cout << "\nPress 'n' for new game." << std::endl;
+  std::cout << "Press 'q' to go to main menu." << std::endl;
+  std::cin >> input;
+
+  if (input == "n"){
+    mPresenter->changeState(new PreflopState(mPresenter));
+  }
+  else if (input == "q"){
+    mPresenter->changeState(new MenuState(mPresenter));
+  }
   return;
 }
 
