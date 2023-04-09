@@ -26,13 +26,19 @@ void PreflopState::onExit(){
 
 void PreflopState::update(){
   mPresenter->resetPlayerDeck();
+  mPresenter->setNumOpponents();
   drawHand();
+  mPresenter->clearTable();
+  GameState::nameHand();
+  GameState::rateHand(mStateId);
   return;
 }
 
 
 void PreflopState::render(){
   mPresenter->getViewer()->renderHand(GameState::getHand());
+  mPresenter->getViewer()->renderPoint(GameState::getPoint());
+  mPresenter->getViewer()->renderRating(GameState::getRating());
   return;
 }
 
